@@ -6,12 +6,12 @@
     <body>
         <header>
             <nav class="nav">
-                <a class="nav-link active" href="<?php echo site_url('controllers/Produits/liste');?>">Acceuil</a>
+                <a class="nav-link active" href="<?php echo site_url('Produits/liste');?>">Acceuil</a>
             </nav>
             <h1>Formulaire ajout d'article</h1>
         </header>
             <div class="container">
-                <form action="script_traitement/script_ajout.php" method="post" name="" enctype="multipart/form-data" id="formulaire">
+                <form action="<?php echo site_url('Produits/ajout');?>" method="post" name="" enctype="multipart/form-data" id="formulaire">
                     <div class="row">                                                           <!-- champs couleur et référence -->
                         <div class="form-group col-5 ">
                             <label for="reference">Référence</label>
@@ -27,7 +27,7 @@
                             <p class="P">Catégorie</p>
                             <div class="input-group ">
                                 <select class="custom-select" name="pro_cat_id" id="categorie" >
-                                    <option selected></option>
+                                    <option selected>1</option>
                                 </select>
                             </div>
                         </div>

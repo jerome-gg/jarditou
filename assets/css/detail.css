@@ -1,0 +1,46 @@
+.non{
+    margin-top: 3.5% !important;
+}
+
+/* header */
+header{
+    margin-bottom: 1%;
+}
+
+.nav{
+    background-color:grey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+}
+
+.nav a{
+    color:black;
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+/* footer form*/
+
+.date{
+    margin-bottom: 0rem !important;
+    
+}
+
+button{
+    margin-top: 1rem;
+}
+
+.bloque{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-check{
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
