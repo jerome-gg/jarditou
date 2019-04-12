@@ -12,7 +12,7 @@ class Liste extends CI_Model {
       
 
         // Stockage du resultat de la requête sous forme de tableau dont chaque élément est un objet PHP
-        $requete = $this->db->query('SELECT * FROM produits')->result();
+        $requete = $this->db->query('SELECT * FROM produits ORDER BY pro_id desc')->result();
         return $requete;
         
     }

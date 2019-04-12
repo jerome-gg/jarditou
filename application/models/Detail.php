@@ -15,6 +15,7 @@ class Detail extends CI_Model {
          *  chaque élément est un objet PHP
          */
         $requete ['detail'] = $this->db->query('SELECT * FROM produits WHERE pro_id=?', $id)->row();
+       
         return $requete;
         
         
