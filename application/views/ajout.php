@@ -17,7 +17,9 @@
                             <p class="P">Catégorie</p>
                             <div class="input-group ">
                                 <select class="custom-select" name="pro_cat_id" id="categorie" >
-                                    <option selected>1</option>
+                                    <?php foreach($liste_categorie as $row){ ?>
+                                    <option value='<?php echo $row->cat_id ?>'><?php echo $row->cat_nom ?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
@@ -52,7 +54,11 @@
                                 </div>  
                             </div>
                         </div>
-                    </div>                 
+                        <div class="form-group col-5 offset-2">
+                            <label for="pro_d_ajout">Date d'ajout</label>
+                            <input type="text" class="form-control" name="pro_d_ajout" id="date_ajout" value="<?php echo date('Y-m-d'); ?>" readonly>
+                        </div> 
+                    </div>          
                     <input type="submit" class="btn btn-success" value="Valider" id="valider">
                 </form>
             </div>

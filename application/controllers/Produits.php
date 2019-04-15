@@ -21,6 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             // Charge le résultat de $requête dans le tableau liste_produit.
             $model["liste_produit"] = $requete;
+            
             $this->load->view('header');
             // On appel la vue liste dans le dossier views et on passe en paramettre $model pour passer les infos de la database
             $this->load->view('liste', $model);
@@ -62,8 +63,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 * Charge le module permettant d'utiliser la fonction redirect 
                 * paramettre ajouter directementdans le fichier autoload.php
                 */ 
+                
+                /**
+                 * charge le model permettant d'afficher les catégories dans le 
+                 * menu déroulant.
+                 */
+                $this->load->model('Ajout');
+                $requete = $this->Ajout->show_cat();
+                $model["liste_categorie"] = $requete;
+        
+               
+
+
                 $this->load->view('header');
-                $this->load->view('ajout'); //1er appel de la page :  affichage du formulaire
+                $this->load->view('ajout', $model); //1er appel de la page :  affichage du formulaire
                 $this->load->view('footer');
             }
   
@@ -103,7 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
         }
 
-        /* public function modif($id)
+         public function modif($id)
         {
             //récupération de l'id dans GET
             $params = $this->input->get();
@@ -115,5 +128,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              */
 
 
-        //} */
+        } 
 }

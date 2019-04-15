@@ -15,6 +15,7 @@ class Liste extends CI_Model {
         $requete = $this->db->query('SELECT * FROM produits ORDER BY pro_id desc')->result();
         return $requete;
         
+        
     }
 
 }
