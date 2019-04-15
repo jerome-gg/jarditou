@@ -6,13 +6,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function liste()
         {
-
             /**
             * Charge le module permettant d'utiliser la fonction redirect 
             * paramettre ajouter directementdans le fichier autoload.php
             */ 
-            
-            
 
             // Charge la requete et le resultat dans le model 
             $this->load->model('Liste');
@@ -49,6 +46,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // Envoi les données au travers d'un variable
                 $succes = $this->Ajout->push_data($data);
 
+/*-------------------Photo------------------*/
+
+                $this->load->model('Query');
+                $requete = $this->Query->last_id();
+    
+                $this->load->model('Upload');
+                $this->Upload->photo($requete);
+                 /**
+                  * récupération de l'extension du fichier upload en passant 
+                  * par pathinfo.
+                  */
+                $ext = pathinfo($_FILES['fichier']['name']);
+                $id = $requete->pro_id;
+                
+                $data = array(
+                    'pro_photo' => $ext['extension']
+                ); 
+
+                $this->load->model('Modif');
+                $this->Modif->upload_ext($id, $data); 
+
+                
                 if($succes){
                     // redirige le navigateur vers la methode liste du controleur produits
                     redirect( site_url( 'Produits/liste'));
@@ -69,11 +88,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  * menu déroulant.
                  */
                 $this->load->model('Ajout');
-                $requete = $this->Ajout->show_cat();
-                $model["liste_categorie"] = $requete;
-        
-               
-
+                $categorie = $this->Ajout->show_cat();
+                $model["liste_categorie"] = $categorie;
 
                 $this->load->view('header');
                 $this->load->view('ajout', $model); //1er appel de la page :  affichage du formulaire
@@ -96,13 +112,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              * 
              * $id = $params['id'];
              */
-        
-             /* if(isset($params)){
-                redirect(site_url('Produits/detail'));
-             }else{
-                redirect(site_url('Produits/liste'));
-             } */
-            
+
             // Charge la requete et le resultat dans le model 
             $this->load->model('Detail');
 
@@ -116,17 +126,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
         }
 
+        public function supprime(){
+
+            $params = $this->input->get();
+            $id = $this->input->get('pro_id');
+
+            $this->load->model('Supprime');
+            $this->Supprime->delete($id);
+            redirect(site_url('Produits/liste'));
+        }
+ 
+
+        
+
          public function modif($id)
         {
-            //récupération de l'id dans GET
-            $params = $this->input->get();
-            $id = $this->input->get('id');
-            /**
-             * ou 
-             * 
-             * $id = $params['id'];
-             */
+            
+            $this->load->model('Detail');
+            $requete = $this->Detail->get_detail2($id);
 
+            $this->load->model('Ajout');
+            $categorie = $this->Ajout->show_cat();
+            $model["liste_categorie"] = $categorie;
+            $model['requete'] = $requete;
 
+            /* $data = array(
+                $model,$requete
+            ) */
+            $this->load->view('header');
+            $this->load->view('modif',$model);
+            $this->load->view('footer');
         } 
 }

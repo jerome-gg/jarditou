@@ -6,8 +6,8 @@ Class Ajout extends CI_Model{
         /**
          * Requête affichant les catégorie
          */
-        $requete = $this->db->query('SELECT * FROM `categories` WHERE cat_parent is not null')->result();
-        return $requete;
+        $categorie = $this->db->query('SELECT * FROM `categories` WHERE cat_parent is not null')->result();
+        return $categorie;
     }
     
 

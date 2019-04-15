@@ -59,6 +59,7 @@
                     
                     <p class="date " value="">Date d'ajout : <?php echo $detail->pro_d_ajout ?></p>
                     <p class="date " value="">Date de modification : <?php echo $detail->pro_d_modif ?></p>
+                    <a type="button" class="btn btn-warning" value="" href ="<?php echo site_url('Produits/modif/'.$detail->pro_id);?>">Modifier l'article</a>
                     <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Supprimer</button>
                    
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,8 +75,8 @@
                             <p>Voulez-vous vraiment supprimer l'article?</p>
                           </div>
                           <div class="modal-footer">
-                            <a  class="btn btn-secondary non" href="<?php site_url('Produits/detail')?>" >Non</a>
-                            <button type="submit" class="btn btn-danger" formaction="" >Oui</button>
+                            <a  class="btn btn-secondary non" href="<?php echo site_url('Produits/liste'); ?>" >Non</a>
+                            <button type="submit" class="btn btn-danger" formaction = "<?php echo site_url('Produits/supprime');?>">Oui</button>
                           </div>
                         </div>
                       </div>
