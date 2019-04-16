@@ -18,9 +18,10 @@ class Detail extends CI_Model {
        
         return $requete;
         
-        
     }
+
     public function get_detail2($id){
+    /* get detail2 sert pour les détails de la vue modif.php*/
 
         /**
          * Connection à la base faite directement dans le fichier 

@@ -21,14 +21,6 @@ header a{
 }
 
 /*-------------------------------------------Formulaire détail-------------------------------------------*/
-/*---------------------------body---------------------------*/
-.photo{
-    max-width: 25%;
-    min-width: 50%;
-}
-
-
-/*-------------------------------------------Formulaire détail-------------------------------------------*/
 
 /*---------------------------body---------------------------*/
 
@@ -44,6 +36,7 @@ header a{
 h1{
     text-align: center;
     font-weight: bold;
+    margin-bottom: 3rem;
 }
 
 
@@ -52,16 +45,33 @@ table{
     font-weight: bold;
 }
 
-.date {
-    padding-left: 15px;
+/* .img-fluid{
+    max-width: 100%;
+    height: auto;
+}  */
+.photo_box{
+    height:29%;
+    max-height: 200px;
+}
 
+.photo_detail{
+    height: 100%;
+
+}
+
+.btn_detail{
+    padding-left:15px; 
 }
 
 
 
-/*------------------------------*/
-.non{
-    margin-top: 3.5% !important;
+/*-------------------------------------------Formulaire détail-------------------------------------------*/
+
+/*---------------------------body---------------------------*/
+
+.photo{
+    max-width: 25%;
+    min-width: 50%;
 }
 
 /* header */

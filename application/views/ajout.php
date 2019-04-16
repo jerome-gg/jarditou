@@ -5,11 +5,17 @@
                     <div class="row">                                                           <!-- champs couleur et référence -->
                         <div class="form-group col-5 ">
                             <label for="reference">Référence</label>
-                            <input type="text" class="form-control ref" name="pro_ref" id="reference" value="" placeholder="Référence produit">
+                            <input type="text" class="form-control ref" name="pro_ref" id="reference" value="" placeholder="Référence produit" size="10" required>
+                            <div class="" id="errRefVide">
+                                <p>veuillez remplir le champ</p>
+                            </div>
+                            <div class="" id="errRefSaisie">
+                                <p>veuillez mettre une saisie valide</p>
+                            </div>
                         </div>                                                           
                         <div class="form-group col-5 offset-2">                                                    
                             <label for="couleur">Couleur</label>
-                            <input type="text" class="form-control" name="pro_couleur" id="couleur" value="">
+                            <input type="text" class="form-control" name="pro_couleur" id="couleur" value="" size="30">
                         </div>   
                     </div>
                     <div class="row cat-lib">                                                   <!-- champs catégorie et libélé -->
@@ -25,24 +31,45 @@
                         </div>
                         <div class="form-group col-5 offset-2">
                             <label for="libelle">Libéllé</label>
-                            <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit">
+                            <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit" size="200" required>
+                            <div class="" id="errLibVide">
+                                <p>veuillez remplir le champ</p>
+                            </div>
+                            <div class="" id="errLibSaisie">
+                                <p>veuillez mettre une saisie valide</p>
+                            </div>
                         </div>
+                        
                     </div>
 
                     <div class="form-group">                                                    <!-- champ description -->
                         <label for="description">Description</label>
-                        <textarea class="form-control" name="pro_description" id="description" rows="3"
+                        <textarea class="form-control" name="pro_description" id="description" rows="3" size="1000"
                             value=""></textarea>
                     </div>
                     <div class="row">                                                           <!-- champs prix et stock -->
                         <div class="form-group col-5">
                             <label for="prix">Prix</label>
-                            <input type="text" class="form-control" name="pro_prix" id="prix" value="">
+                            <input type="text" class="form-control" name="pro_prix" id="prix" value="" size="6" required>
+                            <div class="" id="errPrixVide">
+                                <p>veuillez remplir le champ</p>
+                            </div>
+                            <div class="" id="errPrixSaisie">
+                                <p>veuillez mettre une saisie valide</p>
+                            </div>
                         </div>
+                        
                         <div class="form-group col-5 offset-2">
                             <label for="stock">Stock</label>
-                            <input type="text" class="form-control" name="pro_stock" id="stock" value="">
+                            <input type="text" class="form-control" name="pro_stock" id="stock" value="" size="11" required>
+                            <div class="" id="errRStkVide">
+                                <p>veuillez remplir le champ</p>
+                            </div>
+                            <div class="" id="errRStkSaisie">
+                                <p>veuillez mettre une saisie valide</p>
+                            </div>
                         </div>
+                        
                     </div>
                     <div class="row">                                                           <!-- champs photo  -->
                         <div class="chieur col-5">

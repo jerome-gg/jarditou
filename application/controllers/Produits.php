@@ -126,7 +126,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
         }
 
-        public function supprime(){
+        public function supprime()
+        {
 
             $params = $this->input->get();
             $id = $this->input->get('pro_id');
@@ -137,24 +138,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
  
 
-        
-
-         public function modif($id)
+         public function modif_liste($id)
         {
-            
-            $this->load->model('Detail');
-            $requete = $this->Detail->get_detail2($id);
+            if($this->input->post()){ // 2e appel de la page : traitement du formulaire
 
-            $this->load->model('Ajout');
-            $categorie = $this->Ajout->show_cat();
-            $model["liste_categorie"] = $categorie;
-            $model['requete'] = $requete;
+                // récupère les données du formulaire
+                $data = $this->input->post();
 
-            /* $data = array(
-                $model,$requete
-            ) */
-            $this->load->view('header');
-            $this->load->view('modif',$model);
-            $this->load->view('footer');
+                /**
+                * Charge le module permettant d'utiliser la fonction redirect 
+                * paramettre ajouter directementdans le fichier autoload.php
+                */ 
+
+                //charge le model
+                $this->load->model('Modif');
+
+                // Envoi les données au travers d'un variable
+                $succes = $this->Modif->update_pro($data);
+
+                if($succes){
+                    // redirige le navigateur vers la methode liste du controleur produits
+                    redirect( site_url( 'Produits/liste'));
+                }else{
+                    // redirige le navigateur vers la methode ajout du controleur produits
+                    redirect( site_url( 'Produits/modif'));
+                }  
+
+            }else{
+                // 1er appel sans données dans le post
+                $this->load->model('Detail');
+                $requete = $this->Detail->get_detail2($id);
+
+                $this->load->model('Ajout');
+                $categorie = $this->Ajout->show_cat();
+                $model["liste_categorie"] = $categorie;
+                $model['requete'] = $requete;
+
+                $this->load->view('header');
+                $this->load->view('modif',$model);
+                $this->load->view('footer');
+            }
+        
         } 
+
+       
 }

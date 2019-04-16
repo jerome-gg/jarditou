@@ -1,8 +1,15 @@
 
 
-        <h1>Formulaire ajout d'article</h1>
+        <h1>Formulaire de modification d'article</h1>
             <div class="container">
-                <form action="" method="post" name="" enctype="multipart/form-data" id="formulaire">
+                <form action="<?php site_url('Produits/modif_liste') ?>" method="post" name="formulaire modification" enctype="multipart/form-data" id="formulaire">
+                    <div class="form-group col-5 ">
+                        <label for="id" hidden>Id</label>
+                        <input type="hidden" class="form-control ref" name="pro_id" id="id" value="<?php echo $requete->pro_id; ?>" placeholder="Référence produit" readonly >
+                    </div>
+                    <div>
+                        <input type="hidden" name="pro_photo" value="<?php echo $requete->pro_photo;?>">
+                    </div>
                     <div class="row">                                                           <!-- champs couleur et référence -->
                         <div class="form-group col-5 ">
                             <label for="reference">Référence</label>
@@ -44,21 +51,37 @@
                             <input type="text" class="form-control" name="pro_stock" id="stock" value="<?php echo $requete->pro_stock; ?>">
                         </div>
                     </div>
-                    <div class="row">                                                           <!-- champs photo  -->
-                        <div class="chieur col-5">
-                            <p class="P">Photo</p>
-                            <div class="input-group mb-2 ">
-                                <div class="custom-file">
-                                    <input type="file" class="input-fichier " id="photo" name="fichier">
-                                    <label  for="customFile"></label>
-                                </div>  
-                            </div>
+                    <div class="row">
+                        <div class="form-group col-5 ">                                         <!-- champs date de modification  -->
+                            <label for="date_modif">Date de modification</label>
+                            <input type="text" class="form-control" name="pro_d_modif" id="date_modif" value="<?php echo date('Y-m-d H:m:s'); ?>" readonly>
                         </div>
-                        <div class="form-group col-5 offset-2">
+                        <div class="form-group col-5 offset-2">                                 <!-- champs date d'ajout  -->
                             <label for="pro_d_ajout">Date d'ajout</label>
-                            <input type="text" class="form-control" name="pro_d_ajout" id="date_ajout" value="<?php echo date('Y-m-d'); ?>" readonly>
+                            <input type="text" class="form-control" name="pro_d_ajout" id="date_ajout" value="<?php echo $requete->pro_d_ajout; ?>" readonly>
                         </div> 
-                    </div>          
-                    <input type="submit" class="btn btn-success" value="Valider" id="valider">
+                    </div> 
+                                                                                                <!-- champs produit bloqué  -->
+                   <?php if($requete->pro_bloque){ ?>
+                    <div class="form-group">
+                        <p>Produit bloqué :</p>
+                        <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1" checked>
+                        <label for="bloque_oui">oui</label>
+                        <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0">
+                        <label for="bloque_non">non</label>
+                    </div>
+                   <?php }else{ ?>
+                        <div class="form-group">
+                            <p>Produit bloqué :</p>
+                            <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1">
+                            <label for="bloque_oui">oui</label>
+                            <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0" checked>
+                            <label for="bloque_non">non</label>
+                        </div> 
+                    <?php } ?>
+                    
+
+                           
+                    <input type="submit" class="btn btn-success" value="Valider les modifications" id="valider">
                 </form>
             </div>
