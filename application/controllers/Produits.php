@@ -29,16 +29,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function ajout()
         {
+            // charge la librairie et le helper 
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->load->model('Errors');
+            $config = $this->Errors->chk_errors();
             
-            if($this->input->post()){ // 2e appel de la page : traitement du formulaire
+            $this->form_validation->set_rules($config);
 
+            // set_rules des champs de formulaire
+            /* $this->form_validation->set_rules('pro_ref', 'reference', 'required|max_length[10]|regex_match[/^([A-za-z0-9]+)$/]');
+            $this->form_validation->set_rules('pro_libelle', 'libelle', 'required|max_length[200]|regex_match[/^([A-za-z0-9]+)$/]');
+            $this->form_validation->set_rules('pro_prix', 'prix', 'required|max_length[9]|regex_match[/^([0-9]+)([.]?[0-9]+)?$/]');
+            $this->form_validation->set_rules('pro_stock', 'stock', 'required|regex_match[/^([0-9]+)$/]');
+            $this->form_validation->set_rules('pro_couleur', 'couleur', 'regex_match[/^[A-Za-z]*$/]');
+            $this->form_validation->set_rules('pro_description', 'description', 'max_length[1000]|regex_match[/^[[\'. A-Za-zéèàç]*$/]'); */
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                /**
+                 * charge le model permettant d'afficher les catégories dans le 
+                 * menu déroulant.
+                 */
+                $this->load->model('Ajout');
+                $categorie = $this->Ajout->show_cat();
+                $model["liste_categorie"] = $categorie;
+
+                // si le formulaire n'est pas envoyé on affiche les vues
+                $this->load->view('header');
+                $this->load->view('ajout', $model); 
+                $this->load->view('footer');
+            }
+            else
+            {
                 // récupère les données du formulaire
                 $data = $this->input->post();
-
-                 /**
-                * Charge le module permettant d'utiliser la fonction redirect 
-                * paramettre ajouter directementdans le fichier autoload.php
-                */ 
 
                 //charge le model
                 $this->load->model('Ajout');
@@ -48,11 +73,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*-------------------Photo------------------*/
 
+            if(($_FILES['fichier']['size'])!=0){
                 $this->load->model('Query');
                 $requete = $this->Query->last_id();
-    
+            
                 $this->load->model('Upload');
-                $this->Upload->photo($requete);
+                $this->Upload->photo($requete); 
                  /**
                   * récupération de l'extension du fichier upload en passant 
                   * par pathinfo.
@@ -62,41 +88,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 
                 $data = array(
                     'pro_photo' => $ext['extension']
-                ); 
+                );
 
                 $this->load->model('Modif');
-                $this->Modif->upload_ext($id, $data); 
-
-                
-                if($succes){
-                    // redirige le navigateur vers la methode liste du controleur produits
-                    redirect( site_url( 'Produits/liste'));
-                }else{
-                    // redirige le navigateur vers la methode ajout du controleur produits
-                    redirect( site_url( 'Produits/ajout'));
-                }
-            
-            }else{
-
-                /**
-                * Charge le module permettant d'utiliser la fonction redirect 
-                * paramettre ajouter directementdans le fichier autoload.php
-                */ 
-                
-                /**
-                 * charge le model permettant d'afficher les catégories dans le 
-                 * menu déroulant.
-                 */
-                $this->load->model('Ajout');
-                $categorie = $this->Ajout->show_cat();
-                $model["liste_categorie"] = $categorie;
-
-                $this->load->view('header');
-                $this->load->view('ajout', $model); //1er appel de la page :  affichage du formulaire
-                $this->load->view('footer');
+                $this->Modif->upload_ext($id, $data);
             }
-  
-        }
+
+                if($succes){ 
+                   // redirige le navigateur vers la methode liste du controleur produits
+                     
+                    /* redirect( site_url( 'Produits/formsuccess')); */
+                    $this->load->view('header');
+                    $this->load->view('formsuccess');
+                    $this->load->view('footer');
+                }else{ 
+                    // redirige le navigateur vers la methode ajout du controleur produits
+                     redirect( site_url( 'Produits/ajout'));
+                }
+
+            }
+        }   
 
         public function detail()
         {
@@ -140,7 +151,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          public function modif_liste($id)
         {
-            if($this->input->post()){ // 2e appel de la page : traitement du formulaire
+
+            // charge la librairie et le helper
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->load->model('Errors');
+            $config = $this->Errors->chk_errors();
+            $this->form_validation->set_rules($config);
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                // appel sans données dans le post
+                $this->load->model('Detail');
+                $requete = $this->Detail->get_detail2($id);
+
+                $this->load->model('Ajout');
+                $categorie = $this->Ajout->show_cat();
+                $model["liste_categorie"] = $categorie;
+                $model['requete'] = $requete;
+
+                $this->load->view('header');
+                $this->load->view('modif',$model);
+                $this->load->view('footer');
+            
+            }else{
 
                 // récupère les données du formulaire
                 $data = $this->input->post();
@@ -158,27 +192,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 if($succes){
                     // redirige le navigateur vers la methode liste du controleur produits
-                    redirect( site_url( 'Produits/liste'));
+                    
+                    $this->load->view('header');
+                    $this->load->view('formsuccess');
+                    $this->load->view('footer');
                 }else{
                     // redirige le navigateur vers la methode ajout du controleur produits
                     redirect( site_url( 'Produits/modif'));
-                }  
+                }
 
-            }else{
-                // 1er appel sans données dans le post
-                $this->load->model('Detail');
-                $requete = $this->Detail->get_detail2($id);
+                // if($this->input->post()){ // 2e appel de la page : traitement du formulaire
 
-                $this->load->model('Ajout');
-                $categorie = $this->Ajout->show_cat();
-                $model["liste_categorie"] = $categorie;
-                $model['requete'] = $requete;
+            }      
 
-                $this->load->view('header');
-                $this->load->view('modif',$model);
-                $this->load->view('footer');
-            }
-        
         } 
 
        

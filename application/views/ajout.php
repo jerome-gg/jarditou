@@ -1,21 +1,26 @@
 
         <h1>Formulaire ajout d'article</h1>
+        
             <div class="container">
                 <form action="<?php echo site_url('Produits/ajout');?>" method="post" name="" enctype="multipart/form-data" id="formulaire">
                     <div class="row">                                                           <!-- champs couleur et référence -->
                         <div class="form-group col-5 ">
                             <label for="reference">Référence</label>
-                            <input type="text" class="form-control ref" name="pro_ref" id="reference" value="" placeholder="Référence produit" size="10" required>
-                            <div class="" id="errRefVide">
-                                <p>veuillez remplir le champ</p>
+                            <input type="text" class="form-control ref" name="pro_ref" id="reference" value="" placeholder="Référence produit" size="10" >
+                            <div class="red" id="errRefVide">
+                                <p>Veuillez remplir le champ.</p>
                             </div>
-                            <div class="" id="errRefSaisie">
-                                <p>veuillez mettre une saisie valide</p>
+                            <div class="red" id="errRefSaisie">
+                                <p>Veuillez entrer une saisie valide.</p>
                             </div>
+                            <?php echo form_error('pro_ref', '<div class= "red">', '</div>'); ?>
                         </div>                                                           
                         <div class="form-group col-5 offset-2">                                                    
                             <label for="couleur">Couleur</label>
                             <input type="text" class="form-control" name="pro_couleur" id="couleur" value="" size="30">
+                            <div class="red" id="errCoulSaisie">
+                                <p>Veuillez entrer une saisie valide.</p>
+                            </div>
                         </div>   
                     </div>
                     <div class="row cat-lib">                                                   <!-- champs catégorie et libélé -->
@@ -31,13 +36,14 @@
                         </div>
                         <div class="form-group col-5 offset-2">
                             <label for="libelle">Libéllé</label>
-                            <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit" size="200" required>
-                            <div class="" id="errLibVide">
-                                <p>veuillez remplir le champ</p>
+                            <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit" size="200" >
+                            <div class="red" id="errLibVide">
+                                <p>Veuillez remplir le champ.</p>
                             </div>
-                            <div class="" id="errLibSaisie">
-                                <p>veuillez mettre une saisie valide</p>
+                            <div class="red" id="errLibSaisie">
+                                <p>Veuillez entrer une saisie valide.</p>
                             </div>
+                            <?php echo form_error('pro_libelle', '<div class= "red" >', '</div>'); ?>
                         </div>
                         
                     </div>
@@ -46,32 +52,38 @@
                         <label for="description">Description</label>
                         <textarea class="form-control" name="pro_description" id="description" rows="3" size="1000"
                             value=""></textarea>
+                        <div class="red" id="errDescSaisie">
+                            <p>Veuillez entrer une saisie valide.</p>
+                        </div>
+                        <?php echo form_error('pro_description', '<div class= "red" >', '</div>'); ?>
                     </div>
                     <div class="row">                                                           <!-- champs prix et stock -->
-                        <div class="form-group col-5">
+                        <div class="form-group col-5">                            
                             <label for="prix">Prix</label>
-                            <input type="text" class="form-control" name="pro_prix" id="prix" value="" size="6" required>
-                            <div class="" id="errPrixVide">
-                                <p>veuillez remplir le champ</p>
+                            <input type="text" class="form-control" name="pro_prix" id="prix" value="" size="6" >
+                            <div class="red" id="errPrixVide">
+                                <p>Veuillez remplir le champ.</p>
                             </div>
-                            <div class="" id="errPrixSaisie">
-                                <p>veuillez mettre une saisie valide</p>
+                            <div class="red" id="errPrixSaisie">
+                                <p>Veuillez entrer une saisie valide.</p>
                             </div>
+                            <?php echo form_error('pro_prix', '<div class= "red" >', '</div>'); ?>
                         </div>
                         
                         <div class="form-group col-5 offset-2">
                             <label for="stock">Stock</label>
-                            <input type="text" class="form-control" name="pro_stock" id="stock" value="" size="11" required>
-                            <div class="" id="errRStkVide">
-                                <p>veuillez remplir le champ</p>
+                            <input type="text" class="form-control" name="pro_stock" id="stock" value="" size="11" >
+                            <div class="red" id="errRStkVide">
+                                <p>Veuillez remplir le champ.</p>
                             </div>
-                            <div class="" id="errRStkSaisie">
-                                <p>veuillez mettre une saisie valide</p>
+                            <div class="red" id="errRStkSaisie">
+                                <p>Veuillez entrer une saisie valide.</p>
                             </div>
+                            <?php echo form_error('pro_stock', '<div class= "red" >', '</div>'); ?>
                         </div>
                         
                     </div>
-                    <div class="row">                                                           <!-- champs photo  -->
+                    <div class="row">                                                           <!-- champ photo  -->
                         <div class="chieur col-5">
                             <p class="P">Photo</p>
                             <div class="input-group mb-2 ">

@@ -5,7 +5,7 @@
                     <div class="$row groupe">
                         <div class=" col-sm-5 ">
                             <div class="photo_box">
-                                <img  class="photo_detail rounded mx-auto d-block" src="<?php echo base_url("assets/images/".$detail->pro_id.'.'.$detail->pro_photo)?>" alt="photo du produit">
+                                <img  class="photo_detail rounded mx-auto d-block" src="<?php echo base_url("assets/images/{$detail->pro_id}.{$detail->pro_photo}")?>" alt="photo du produit">
                             </div>
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">Catégorie</label>
@@ -68,7 +68,7 @@
                         
                     </div>
                     <div class="$row btn_detail"> 
-                        <a type="button" class="btn btn-warning " value="" href ="<?php echo site_url('Produits/modif_liste/'.$detail->pro_id);?>">Modifier l'article</a>
+                        <a type="button" class="btn btn-warning " value="" href ="<?php echo site_url("Produits/modif_liste/{$detail->pro_id}");?>">Modifier l'article</a>
                         <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Supprimer</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">

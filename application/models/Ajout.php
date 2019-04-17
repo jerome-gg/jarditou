@@ -12,6 +12,7 @@ Class Ajout extends CI_Model{
     
 
     public function push_data($data){
+
         
         /**
          * Connection à la base faite directement dans le fichier 
@@ -24,5 +25,6 @@ Class Ajout extends CI_Model{
         }else{
             return false;
         }
-    }
+    } 
+  
 }
