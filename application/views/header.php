@@ -12,9 +12,13 @@
                     <div>
                         <img id="logo" src="<?php echo base_url("assets/images/jarditou_logo.jpg");?>" alt="logo jarditou">
                     </div>
+                </div>
+                <div class="row">
                     <div class="liens">
-                        <a class="" href="<?php echo site_url('Produits/liste'); ?>" >Liste des articles</a>
-                        <a href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                        <div class="row ">
+                                <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>" >Liste des articles</a>
+                                <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                        </div>
                     </div>
                 </div>
             </div>

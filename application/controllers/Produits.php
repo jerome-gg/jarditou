@@ -4,6 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Produits extends CI_controller {
 
+        public function acceuil()
+        {
+            $this->load->view('header');
+            $this->load->view('acceuil');
+            $this->load->view('footer');
+        }
+        
         public function liste()
         {
             /**
