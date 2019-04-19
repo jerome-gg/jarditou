@@ -1,8 +1,9 @@
 
+<!-- <form action="<?php// echo site_url('Produits/ajout');?>" method="post" name="" enctype="multipart/form-data" id="formulaire">
+ -->
         <h1>Formulaire ajout d'article</h1>
-        
+        <?php echo form_open_multipart(''); ?>
             <div class="container">
-                <form action="<?php echo site_url('Produits/ajout');?>" method="post" name="" enctype="multipart/form-data" id="formulaire">
                     <div class="row">                                                           <!-- champs couleur et référence -->
                         <div class="form-group col-5 ">
                             <label for="reference">Référence</label>

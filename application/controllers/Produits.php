@@ -39,10 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // charge la librairie et le helper 
             $this->load->helper('form');
             $this->load->library('form_validation');
-            $this->load->model('Errors');
-            $config = $this->Errors->chk_errors();
             
-            $this->form_validation->set_rules($config);
 
             // set_rules des champs de formulaire
             /* $this->form_validation->set_rules('pro_ref', 'reference', 'required|max_length[10]|regex_match[/^([A-za-z0-9]+)$/]');
@@ -52,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->form_validation->set_rules('pro_couleur', 'couleur', 'regex_match[/^[A-Za-z]*$/]');
             $this->form_validation->set_rules('pro_description', 'description', 'max_length[1000]|regex_match[/^[[\'. A-Za-zéèàç]*$/]'); */
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run('Produits/ajout') == FALSE)
             {
                 /**
                  * charge le model permettant d'afficher les catégories dans le 
@@ -66,9 +63,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $this->load->view('header');
                 $this->load->view('ajout', $model); 
                 $this->load->view('footer');
-            }
-            else
-            {
+
+            }else{
+
                 // récupère les données du formulaire
                 $data = $this->input->post();
 
@@ -80,41 +77,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*-------------------Photo------------------*/
 
-            if(($_FILES['fichier']['size'])!=0){
-                $this->load->model('Query');
-                $requete = $this->Query->last_id();
-            
-                $this->load->model('Upload');
-                $this->Upload->photo($requete); 
-                 /**
-                  * récupération de l'extension du fichier upload en passant 
-                  * par pathinfo.
-                  */
-                $ext = pathinfo($_FILES['fichier']['name']);
-                $id = $requete->pro_id;
+
+                if(($_FILES['fichier']['size'])!=0){
+                    $this->load->model('Query');
+                    $requete = $this->Query->last_id();
                 
-                $data = array(
-                    'pro_photo' => $ext['extension']
-                );
+                    $this->load->model('Upload');
+                    $this->Upload->photo($requete); 
+                     /**
+                      * récupération de l'extension du fichier upload en passant 
+                      * par pathinfo.
+                      */
+                    $ext = pathinfo($_FILES['fichier']['name']);
+                    $id = $requete->pro_id;
 
-                $this->load->model('Modif');
-                $this->Modif->upload_ext($id, $data);
-            }
+                    $data = array(
+                        'pro_photo' => $ext['extension']
+                    );
 
-                if($succes){ 
-                   // redirige le navigateur vers la methode liste du controleur produits
-                     
+                    $this->load->model('Modif');
+                    $this->Modif->upload_ext($id, $data);
+                }
+
+                if($succes){
+                    // redirige le navigateur vers la methode liste du controleur produits
                     /* redirect( site_url( 'Produits/formsuccess')); */
                     $this->load->view('header');
                     $this->load->view('formsuccess');
                     $this->load->view('footer');
-                }else{ 
+                }else{
                     // redirige le navigateur vers la methode ajout du controleur produits
                      redirect( site_url( 'Produits/ajout'));
                 }
-
             }
-        }   
+        }
 
         public function detail()
         {
@@ -146,7 +142,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function supprime()
         {
-
             $params = $this->input->get();
             $id = $this->input->get('pro_id');
 
@@ -162,9 +157,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // charge la librairie et le helper
             $this->load->helper('form');
             $this->load->library('form_validation');
-            $this->load->model('Errors');
-            $config = $this->Errors->chk_errors();
-            $this->form_validation->set_rules($config);
 
             if ($this->form_validation->run() == FALSE)
             {
