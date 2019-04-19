@@ -86,7 +86,7 @@
                     </div>
                     <div class="row">                                                           <!-- champ photo  -->
                         <div class="chieur col-5">
-                            <p class="P">Photo</p>
+                            <p class="P">Photo </p>
                             <div class="input-group mb-2 ">
                                 <div class="custom-file">
                                     <input type="file" class="input-fichier " id="photo" name="fichier">

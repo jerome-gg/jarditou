@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Produits extends CI_controller {
 
-        public function acceuil()
+        public function accueil()
         {
             $this->load->view('header');
             $this->load->view('acceuil');
@@ -19,9 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             */ 
 
             // Charge la requete et le resultat dans le model 
-            $this->load->model('Liste');
-
-            $requete = $this->Liste->get_data();
+            $this->load->model('Produits_model');
+            $requete = $this->Produits_model->get_data();
 
             // Charge le résultat de $requête dans le tableau liste_produit.
             $model["liste_produit"] = $requete;
@@ -39,15 +38,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // charge la librairie et le helper 
             $this->load->helper('form');
             $this->load->library('form_validation');
-            
-
-            // set_rules des champs de formulaire
-            /* $this->form_validation->set_rules('pro_ref', 'reference', 'required|max_length[10]|regex_match[/^([A-za-z0-9]+)$/]');
-            $this->form_validation->set_rules('pro_libelle', 'libelle', 'required|max_length[200]|regex_match[/^([A-za-z0-9]+)$/]');
-            $this->form_validation->set_rules('pro_prix', 'prix', 'required|max_length[9]|regex_match[/^([0-9]+)([.]?[0-9]+)?$/]');
-            $this->form_validation->set_rules('pro_stock', 'stock', 'required|regex_match[/^([0-9]+)$/]');
-            $this->form_validation->set_rules('pro_couleur', 'couleur', 'regex_match[/^[A-Za-z]*$/]');
-            $this->form_validation->set_rules('pro_description', 'description', 'max_length[1000]|regex_match[/^[[\'. A-Za-zéèàç]*$/]'); */
 
             if ($this->form_validation->run('Produits/ajout') == FALSE)
             {
@@ -55,8 +45,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  * charge le model permettant d'afficher les catégories dans le 
                  * menu déroulant.
                  */
-                $this->load->model('Ajout');
-                $categorie = $this->Ajout->show_cat();
+                $this->load->model('Produits_model');
+                $categorie = $this->Produits_model->show_cat();
                 $model["liste_categorie"] = $categorie;
 
                 // si le formulaire n'est pas envoyé on affiche les vues
@@ -70,24 +60,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $data = $this->input->post();
 
                 //charge le model
-                $this->load->model('Ajout');
+                $this->load->model('Produits_model');
 
                 // Envoi les données au travers d'un variable
-                $succes = $this->Ajout->push_data($data);
+                $succes = $this->Produits_model->push_data($data);
 
 /*-------------------Photo------------------*/
 
 
                 if(($_FILES['fichier']['size'])!=0){
-                    $this->load->model('Query');
-                    $requete = $this->Query->last_id();
+                    $this->load->model('Produits_model');
+                    $requete = $this->Produits_model->last_id();
                 
-                    $this->load->model('Upload');
-                    $this->Upload->photo($requete); 
-                     /**
-                      * récupération de l'extension du fichier upload en passant 
-                      * par pathinfo.
-                      */
+                    $this->load->model('Produits_model');
+                    $this->Produits_model->photo($requete); 
+                    /**
+                     * récupération de l'extension du fichier upload en passant 
+                     * par pathinfo.
+                     */
                     $ext = pathinfo($_FILES['fichier']['name']);
                     $id = $requete->pro_id;
 
@@ -95,8 +85,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         'pro_photo' => $ext['extension']
                     );
 
-                    $this->load->model('Modif');
-                    $this->Modif->upload_ext($id, $data);
+                    $this->load->model('Produits_model');
+                    $this->Produits_model->upload_ext($id, $data);
                 }
 
                 if($succes){
@@ -128,10 +118,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              */
 
             // Charge la requete et le resultat dans le model 
-            $this->load->model('Detail');
+            $this->load->model('Produits_model');
 
             // Appel de la méthode get-detail en avec $id en paramètre
-            $requete = $this->Detail->get_detail($id);
+            $requete = $this->Produits_model->get_detail($id);
 
             $this->load->view('header');
             // On appel la vue liste dans le dossier views et on passe en paramettre $model pour passer les infos de la database
@@ -145,15 +135,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $params = $this->input->get();
             $id = $this->input->get('pro_id');
 
-            $this->load->model('Supprime');
-            $this->Supprime->delete($id);
+            $this->load->model('Produits_model');
+            $this->Produits_model->delete($id);
             redirect(site_url('Produits/liste'));
         }
  
 
-         public function modif_liste($id)
+         public function modif($id)
         {
-
             // charge la librairie et le helper
             $this->load->helper('form');
             $this->load->library('form_validation');
@@ -161,11 +150,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             if ($this->form_validation->run() == FALSE)
             {
                 // appel sans données dans le post
-                $this->load->model('Detail');
-                $requete = $this->Detail->get_detail2($id);
+                $this->load->model('Produits_model');
+                $requete = $this->Produits_model->get_detail2($id);
 
-                $this->load->model('Ajout');
-                $categorie = $this->Ajout->show_cat();
+                $this->load->model('Produits_model');
+                $categorie = $this->Produits_model->show_cat();
                 $model["liste_categorie"] = $categorie;
                 $model['requete'] = $requete;
 
@@ -178,16 +167,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // récupère les données du formulaire
                 $data = $this->input->post();
 
-                /**
-                * Charge le module permettant d'utiliser la fonction redirect 
-                * paramettre ajouter directementdans le fichier autoload.php
-                */ 
-
                 //charge le model
-                $this->load->model('Modif');
+                $this->load->model('Produits_model');
 
                 // Envoi les données au travers d'un variable
-                $succes = $this->Modif->update_pro($data);
+                $succes = $this->Produits_model->update_pro($data);
 
                 if($succes){
                     // redirige le navigateur vers la methode liste du controleur produits

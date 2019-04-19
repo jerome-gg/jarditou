@@ -2,7 +2,7 @@
 
         <h1>Formulaire de modification d'article</h1>
             <div class="container">
-                <form action="<?php site_url('Produits/modif_liste') ?>" method="post" name="formulaire modification" enctype="multipart/form-data" id="formulaire">
+                <form action="<?php site_url('Produits/modif') ?>" method="post" name="formulaire modification" enctype="multipart/form-data" id="formulaire">
                     <div class="form-group col-5 ">
                         <label for="id" hidden>Id</label>
                         <input type="hidden" class="form-control ref" name="pro_id" id="id" value="<?php echo $requete->pro_id; ?>" placeholder="Référence produit" readonly >

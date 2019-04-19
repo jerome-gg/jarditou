@@ -16,8 +16,9 @@
                 <div class="row">
                     <div class="liens">
                         <div class="row ">
-                                <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>" >Liste des articles</a>
-                                <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                            <a class="ml-5" href="<?php echo site_url('Produits/accueil'); ?>">Accueil</a>
+                            <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a>
+                            <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
                         </div>
                     </div>
                 </div>

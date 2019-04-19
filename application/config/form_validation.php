@@ -85,7 +85,7 @@
                     )
                 ),
                 /*-------------------------------Gestion des erreur et contrôle formulaire produit ( modif)-------------------------------*/
-                'Produits/modif_liste'=> array(
+                'Produits/modif'=> array(
                     array(
                         'field'=> 'pro_ref',
                         'label'=> 'reference',
@@ -154,7 +154,7 @@
                 /*-------------------------------Gestion des erreur et contrôle formulaire inscription user-------------------------------*/
                 'Users/inscription' => array(
                     array(
-                        'field'=> 'nom',
+                        'field'=> 'user_nom',
                         'label'=> 'nom',
                         'rules'=> 'required|max_length[25]|regex_match[/^[A-Za-z \-\']+$/]',
                         'errors'=> array(
@@ -164,7 +164,7 @@
                         )
                     ),
                     array(
-                        'field'=> 'prenom',
+                        'field'=> 'user_prenom',
                         'label'=> 'prenom',
                         'rules'=> 'required|max_length[25]|regex_match[/^[A-Za-z \-\']+$/]',
                         'errors'=> array(
@@ -174,7 +174,7 @@
                         )
                     ),
                     array(
-                        'field'=> 'mail',
+                        'field'=> 'user_mail',
                         'label'=> 'E-mail',
                         'rules'=> 'required|max_length[50]',//|regex_match[/^[A-Za-z \-\']+$/]
                         'errors'=> array(
@@ -184,9 +184,9 @@
                         )
                     ),
                     array(
-                        'field'=> 'login',
+                        'field'=> 'user_login',
                         'label'=> 'login',
-                        'rules'=> 'required|is_unique[user.user_login]|max_length[25]|regex_match[/^[A-Za-z \-\']+$/]',
+                        'rules'=> 'required|is_unique[users.user_login]|max_length[25]|regex_match[/^[A-Za-z \-\']+$/]',
                         'errors'=> array(
                             'required' => 'Veuillez remplir ce champ.',
                             'is_unique' => 'Ce login est déjà utilisé, veuillez en saisir un nouveau.',
@@ -195,7 +195,7 @@
                         )
                     ),
                     array(
-                        'field'=> 'pass1',
+                        'field'=> 'user_pass',
                         'label'=> 'mot de passe',
                         'rules'=> 'required|max_length[100]|regex_match[/^[a-zA-Z0-9]+$/]',
                         'errors'=> array(
@@ -205,7 +205,7 @@
                         )
                     ),
                     array(
-                        'field'=> 'pass2',
+                        'field'=> 'user_pass2',
                         'label'=> 'vérification du mot de passe',
                         'rules'=> 'required|max_length[100]|regex_match[/^[a-zA-Z0-9]+$/]',
                         'errors'=> array(
