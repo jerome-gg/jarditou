@@ -1,4 +1,4 @@
-<?php header( "refresh:3; url=" .site_url('Produits/liste')); ?>
+<?php header( "refresh:3; url=" .site_url('Produits/accueil')); ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,7 +11,7 @@
     <div class="div_success" >
         <h3 class="success">Le formulaire n'a pas été correctement soumis</h3>
         <p class="success">Vous allez être redirigé dans quelques secondes.
-            Si ce n'est pas le cas <a href="<?php site_url('Produits/liste') ?>" title="liens vers la liste">cliquez ici</a>.
+            Si ce n'est pas le cas <a href="<?php site_url('Produits/accueil') ?>" title="liens vers l'accueil'">cliquez ici</a>.
         </p>
     </div>
 

@@ -214,5 +214,28 @@
                             'regex_match' => 'Veuillez entrer une saisie valide.',
                         )
                     )
+                ),
+                /*-------------------------------Gestion des erreur et contrôle formulaire connexion user-------------------------------*/
+                'Users/connexion' => array(
+                    array(
+                        'field'=>'user_login',
+                        'label'=>'Login',
+                        'rules'=>'required|max_length[25]|regex_match[/^[A-Za-z \-\']+$/]',
+                        'errors'=>array(
+                            'required' => 'Veuillez remplir ce champ.',
+                            'max_length' => 'Saisie limité à 25 caractères.',
+                            'regex_match' => 'Veuillez entrer une saisie valide.',
+                        )
+                    ),
+                    array(
+                        'field'=>'user_pass',
+                        'label'=>'Mot de passe',
+                        'rules'=>'required|max_length[100]|regex_match[/^[a-zA-Z0-9]+$/]',
+                        'errors'=>array(
+                            'required' => 'Veuillez remplir ce champ.',
+                            'max_length' => 'Saisie limité à 100 caractères.',
+                            'regex_match' => 'Veuillez entrer une saisie valide.',
+                        )
+                    ),
                 )
             );

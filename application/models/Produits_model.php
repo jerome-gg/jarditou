@@ -12,9 +12,9 @@ class Produits_model extends CI_Model
     }
 
 /**
- * methode pour ajour de produits dans la base
+ * methode pour ajouter des produits dans la base
  */
-    public function push_data($data){        
+    public function push_data($data){
         // execute une requete insert, $data contient les infos sous forme de tableau. 
         if ($this->db->insert('produits', $data)){
             return true;

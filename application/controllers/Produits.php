@@ -184,7 +184,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     redirect( site_url( 'Produits/modif'));
                 }
 
-                // if($this->input->post()){ // 2e appel de la page : traitement du formulaire
+                
 
             }      
 

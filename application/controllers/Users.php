@@ -50,8 +50,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function connexion()
         {
-            $this->load->view('header');
-            $this->load->view('connexion');
-            $this->load->view('footer');
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+
+            if($this->form_validation->run() == FALSE){
+
+                $this->load->view('header');
+                $this->load->view('connexion');
+                $this->load->view('footer');
+
+            }else{
+                $data = $this->input->post();
+                
+                foreach($data as $key => $value){
+                    $key = htmlspecialchars($value);
+                }
+
+                $this->load->model('Users_model');
+                $requete = $this->Users_model->auth_user($data);
+
+                if($requete){
+                    if(($data['user_login'] == $requete->user_login) && (password_verify($data['user_pass'],$requete->user_pass))){
+                        
+                        $newdata = array(
+                            'user_name' => $requete->user_prenom,
+                            'email' => $requete->user_mail,
+                            'user_droit' => $requete->user_droit,
+                        );
+                        $this->session->set_userdata($newdata);
+
+                    }
+                }
+
+            }
         }
     }
