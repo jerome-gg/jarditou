@@ -26,7 +26,7 @@ header a{
     background-color:black;
     /* margin-top: 2rem; */
 }
-/*-------------------------------------------Acceuil-------------------------------------------*/
+/*-------------------------------------------accueil-------------------------------------------*/
 
 .jardin{
     background-image: url("../images/jardin.jpg");
@@ -35,7 +35,7 @@ header a{
     background-position: right;
 }
 
-.acceuil{
+.accueil{
     color: black;
     font-weight: bolder;
 }

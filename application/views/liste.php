@@ -1,3 +1,4 @@
+<?php if((isset($_SESSION)) && ($_SESSION['user_droit'] == 'a')){ ?>
 
         <h1>Liste de produits</h1>
         <div class="container">
@@ -40,3 +41,13 @@
                 </tbody>        
             </table>           
         </div>
+<?php }else{ ?>
+
+    <div>
+        Veuillez vous connecter en tant qu'administrateur pour accèder à cette page.
+        Vous allez être rediriger pour vous authentifier.    
+    </div>
+ <?php   
+    header( "refresh:3; url=" .site_url('Users/connexion'));
+ }
+ ?>    

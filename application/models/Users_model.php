@@ -32,7 +32,7 @@ class Users_model extends CI_Model
 
     private function user_last_connexion($data){
         /**
-         * methode pour update la derniere connexion
+         * methode pour update la date de dernière connexion
          */
         if(isset($data)){
             $data['user_date_der_co'] = date('Y-m-d');
@@ -42,7 +42,7 @@ class Users_model extends CI_Model
         }
     }
 
-    public function session_destroy(){
+    public function log_out(){
         $this->session->sess_destroy();
     }
 }

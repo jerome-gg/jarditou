@@ -4,11 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Users extends CI_Controller{
         
+        /**
+         * Liste des différentes choses charger automatiquement
+         * 
+         *  libraries: 'database','session','form_validation';
+         *  helper: 'url','form';
+         *  model: Produits_model','Users_model';
+         */
+
+
         public function inscription()
         {
-            // charge la bibliothèque lié au formulaire et le fichiers Errors.
-            $this->load->helper('form');
-            $this->load->library('form_validation');
 
             if($this->form_validation->run() == FALSE){
              // charge la page d'inscription car le formulaire n'est pas envoyé
@@ -30,7 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // traitement des données si les 2 pass sont identiques
                 if($data['user_pass'] == $data['user_pass2']){
                     $data['user_pass'] = password_hash($data['user_pass'],PASSWORD_DEFAULT);
-                    $this->load->model('Users_model');
                     $success = $this->Users_model->add($data);
                     // si utilisateur entré en base redirection sur la page de connexion
                     if($success){
@@ -50,11 +55,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function connexion()
         {
-            $this->load->helper('form');
-            $this->load->library('form_validation');
-
+            
             if($this->form_validation->run() == FALSE){
-
+    
+                $this->Users_model->log_out();
                 $this->load->view('header');
                 $this->load->view('connexion');
                 $this->load->view('footer');
@@ -66,7 +70,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $key = htmlspecialchars($value);
                 }
 
-                $this->load->model('Users_model');
                 $requete = $this->Users_model->auth_user($data);
 
                 if($requete){
@@ -78,10 +81,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'user_droit' => $requete->user_droit,
                         );
                         $this->session->set_userdata($newdata);
-
+                        redirect( site_url( 'Produits/boutique'));
+                        
+                        
+                    }else{
+                        /**
+                         * connexion échoué
+                         */
+                        $this->load->view('header');
+                        $this->load->view('connexion_failed');
+                        $this->load->view('connexion');
+                        $this->load->view('footer');
                     }
                 }
 
             }
         }
+
+        public function deconnexion(){
+            $this->Users_model->log_out();
+            redirect( site_url( 'produits/accueil'));
+        }
+
     }

@@ -130,8 +130,19 @@ class Produits_model extends CI_Model
  */
     public function upload_ext($id, $data){
 
-    $this->db->where('pro_id',$id);
-    $this->db->update('produits',$data);
+        $this->db->where('pro_id',$id);
+        $this->db->update('produits',$data);
 
+    }
+
+    public function categorie($id){
+        /**
+         * methode pour aller chercher les catégories de produits
+         */
+        $requete = $this->db->query('SELECT cat_nom FROM categories WHERE cat_parent=?',$id)->result();
+        $this->output->set_content_type('application.json');
+        $this->output->set_header('Access-Control-Allow-Origin:*');
+        $this->output->set_output(json_encode($requete));
+        return $requete;
     }
 }

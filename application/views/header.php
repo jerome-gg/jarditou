@@ -7,6 +7,7 @@
 </head>
     <body>
         <header>
+        <?php var_dump($_SESSION); ?>
             <div class="container-fluid ">
                 <div class="row">
                     <div>
@@ -17,8 +18,15 @@
                     <div class="liens">
                         <div class="row ">
                             <a class="ml-5" href="<?php echo site_url('Produits/accueil'); ?>">Accueil</a>
-                            <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a>
-                            <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                            <?php if($this->session->user_droit){ ?>
+                                <a class="ml-5" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion</a>
+                            <?php } 
+                            
+                                if($this->session->user_droit == 'a'){?>
+                                <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a>
+                                <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                             
+                            <?php } ?>  
                         </div>
                     </div>
                 </div>
