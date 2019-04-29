@@ -82,17 +82,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         );
                         $this->session->set_userdata($newdata);
                         redirect( site_url( 'Produits/boutique'));
-                        
-                        
-                    }else{
-                        /**
-                         * connexion échoué
-                         */
-                        $this->load->view('header');
-                        $this->load->view('connexion_failed');
-                        $this->load->view('connexion');
-                        $this->load->view('footer');
-                    }
+                    }  
+                }else{
+                    /**
+                     * connexion échoué
+                     */
+                    $this->load->view('header');
+                    $this->load->view('connexion_failed');
+                    $this->load->view('connexion');
+                    $this->load->view('footer');
                 }
 
             }

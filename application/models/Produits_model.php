@@ -135,14 +135,19 @@ class Produits_model extends CI_Model
 
     }
 
-    public function categorie($id){
+
+    function getTree($id) {
         /**
          * methode pour aller chercher les catégories de produits
          */
-        $requete = $this->db->query('SELECT cat_nom FROM categories WHERE cat_parent=?',$id)->result();
-        $this->output->set_content_type('application.json');
-        $this->output->set_header('Access-Control-Allow-Origin:*');
-        $this->output->set_output(json_encode($requete));
+        
+        if ($id){
+            $requete = $this->db->query('SELECT * FROM `categories` WHERE `cat_parent` = ?',$id)->result();
+        }else{
+            $requete = $this->db->query('SELECT * FROM `categories` WHERE `cat_parent` is null')->result();
+        }
         return $requete;
-    }
+        
+      }
+
 }

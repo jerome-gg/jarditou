@@ -33,17 +33,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $this->load->view('liste', $model);
                 $this->load->view('footer');
 
-            }else {
+            }else{
                 redirect(site_url("Users/connexion"));
             }
         }
+
+        public function menu($id = null)
+        {
+            $requete = $this->Produits_model->getTree($id);
+            $this->output->set_content_type('application.json');
+            $this->output->set_header('Access-Control-Allow-Origin:*');
+            $this->output->set_output(json_encode($requete));
+        }
+
+        public function menu2($id)
+        {
+            $requete = $this->Produits_model->getTree($id);
+            $this->output->set_content_type('application.json');
+            $this->output->set_header('Access-Control-Allow-Origin:*');
+            $this->output->set_output(json_encode($requete));
+        }
+
 
 
         public function ajout()
         {
             if ($this->session->user_droit=="a") {
-
-
 
                 if ($this->form_validation->run('Produits/ajout') == FALSE)
                 {
@@ -206,6 +221,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function menu_categories()
         {
-            
+            $this->load->getTree($id);
         }
 }

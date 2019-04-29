@@ -34,6 +34,11 @@
                                     <?php }?>
                                 </select>
                             </div>
+                            <div id="tree">
+                                <select name="categorie2 col-5" class="custom-select" id="cat">
+                                    <option value=''>Choisissez votre catégorie</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-5 offset-2">
                             <label for="libelle">Libéllé</label>
