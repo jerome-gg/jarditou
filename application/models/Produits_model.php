@@ -25,7 +25,7 @@ class Produits_model extends CI_Model
 
 /**
  * Methode pour affichage du détail produit
- *  sur le formulaire détail
+ * sur le formulaire détail
  */
     public function get_detail($id){
         /**
@@ -53,6 +53,7 @@ class Produits_model extends CI_Model
        
         return $requete; 
     }
+
 /**
  * methode pour afficher la table produits
  */
@@ -61,6 +62,34 @@ class Produits_model extends CI_Model
         $requete = $this->db->query('SELECT * FROM produits ORDER BY pro_id desc')->result();
         return $requete;  
     }
+
+
+/**
+ * methode pour afficher la table produits pour la boutique
+ */
+    public function get_data_boutique($id = null){
+        $requete = $this->db->query('SELECT * 
+                                FROM produits 
+                                JOIN categories ON produits.pro_cat_id = categories.cat_id
+                                WHERE pro_bloque = 0
+                                ORDER BY cat_parent ASC')->result();
+        return $requete;
+    }
+
+
+ /**
+  * methode pour afficher les produits selon leurs catégorie
+  */
+    public function get_data_boutique_categorie($id){
+        // Stockage du resultat de la requête sous forme de tableau dont chaque élément est un objet PHP
+        $requete = $this->db->query('   SELECT * 
+                                        FROM produits 
+                                        JOIN categories ON produits.pro_cat_id = categories.cat_id
+                                        WHERE pro_bloque = 0 and cat_parent=?
+                                        ORDER BY cat_parent ASC',$id)->result();
+        return $requete;  
+    }
+
 
 /**
  * methode pour modifier un produit
@@ -136,7 +165,7 @@ class Produits_model extends CI_Model
     }
 
 
-    function getTree($id) {
+    public function getTree($id) {
         /**
          * methode pour aller chercher les catégories de produits
          */

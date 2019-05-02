@@ -38,24 +38,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+        /**
+         * Affiche le menu des catégories 
+         */
         public function menu($id = null)
         {
             $requete = $this->Produits_model->getTree($id);
-            $this->output->set_content_type('application.json');
+            $this->output->set_content_type('application/json');
             $this->output->set_header('Access-Control-Allow-Origin:*');
             $this->output->set_output(json_encode($requete));
         }
 
-        public function menu2($id)
+        public function menu2()
         {
+            $id = $this->input->get("id");
             $requete = $this->Produits_model->getTree($id);
-            $this->output->set_content_type('application.json');
+            $this->output->set_content_type('application/json');
             $this->output->set_header('Access-Control-Allow-Origin:*');
             $this->output->set_output(json_encode($requete));
         }
 
-
-
+        
         public function ajout()
         {
             if ($this->session->user_droit=="a") {
@@ -211,12 +214,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         } 
 
-       
+       /**
+        * methode pour requete ajax renvoi tout les produits au chargement de la vue
+        */
         public function boutique()
         {
+            $requete = $this->Produits_model->get_data_boutique();
+            // Charge le résultat de $requête dans le tableau liste_produit.
+            $model["liste_produit"] = $requete;
             $this->load->view('header');
-            $this->load->view('boutique');
+            $this->load->view('boutique',$model);
             $this->load->view('footer');
+        }
+
+         /**
+        * methode pour requete ajax renvoi tout les produits
+        */
+        public function liste_boutique_complete()
+        {
+            $requete = $this->Produits_model->get_data_boutique();
+            $this->output->set_content_type('application/json');
+            $this->output->set_header('Access-Control-Allow-Origin:*');
+            $this->output->set_output(json_encode($requete));
+
+        }
+        /**
+        * methode pour requete ajax renvoi les produit selon la categorie
+        */
+        public function liste_boutique()
+        {
+            $id = $this->input->get("id");
+            $requete = $this->Produits_model->get_data_boutique_categorie($id);
+            $this->output->set_content_type('application/json');
+            $this->output->set_header('Access-Control-Allow-Origin:*');
+            $this->output->set_output(json_encode($requete));
+
         }
 
         public function menu_categories()
