@@ -3,7 +3,7 @@
         <form method="post" action="<?php echo site_url('Users/connexion')?>">
           <div class="form-group col-sm-6 offset-3">
             <label for="login">Login </label>
-            <input type="text" class="form-control" id="login" aria-describedby="emailHelp" placeholder="Enter your login" name="user_login">
+            <input type="text" class="form-control" id="login" aria-describedby="emailHelp" placeholder="Enter your login" name="user_login" autofocus>
             <?php echo form_error('user_login', '<div class= "red">', '</div>'); ?>
           </div>
           <div class="form-group col-sm-6 offset-3">

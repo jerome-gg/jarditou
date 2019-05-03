@@ -1,21 +1,33 @@
 /*-------------------------------------------Header-------------------------------------------*/
 
 header{
-    background-color:#b6de8f;  
+    background-color:#ffffff;  
     /* margin-bottom: 1%; */
 }
 
 #logo{
-    height: 10em;
+    height: 8em;
 }
+
 .liens{
     display: flex;
     /* justify-content: space-around; */
     flex-direction: column;
 }
+.admin{
+    border: 1px #ac3521 solid;
+    border-radius: 30px;
+}
+.admin p{
+    font-size: 1.5em;
+    text-decoration: underline;
+    color: #ac3521;
+    font-weight: bold;
+    text-align: center;
+}
 
 header a{
-    color: black;
+    color: #256d48;
     font-weight: bold;
     margin:auto;
 }

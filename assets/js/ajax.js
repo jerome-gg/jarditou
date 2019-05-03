@@ -76,8 +76,8 @@ $('#cat4').hide(); */
 
  /**
  * methode d'envoi de données avec get ou post 
- * nécessite de récupérer les données dans le parametre de la fontion 
- * public function('parametre avec lequel il a été envoyé')
+ * nécessite de récupérer les données dans le paramètre de la fonction 
+ * public function('paramètre avec lequel il a été envoyé')
  */
 $(document).ready(function(){
     /**
@@ -101,7 +101,6 @@ $(document).ready(function(){
              */
             $('#cat').change(function(){
                 var categorie = $('#cat').val();
-                console.log(categorie);
                 $.ajax({
                     type: "GET",
                     url: url + '/produits/menu/'+ categorie,
@@ -110,102 +109,71 @@ $(document).ready(function(){
                     {
                         var i = 0;
                         $('#cat2').remove();
+                        $('#cat3').remove();
+                        $('#cat4').remove();
                         $('#tree').append(" <select id='cat2' name='categorie3 col-5' class='custom-select cat2' ></select>");
-                        $('#cat2').append('<option> Faites votre choix</option>');
+                        $('#cat2').append('<option value="0"> Faites votre choix</option>');
                         $.each(data, function(){
                             $('#cat2').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
                             i++;
                         });
                         /**
-                         * prend en compte la valeur du 1er select pour générer le 3e
+                         * prend en compte la valeur du 2e select pour générer le 3e
                          */
                         $('#cat2').change(function(){
                             var categorie = $('#cat2').val();
-                            console.log(categorie);
                             $.ajax({
                                 type: 'GET',
                                 url: url + '/produits/menu/'+ categorie,
                                 dataType: "json",
                                 success:function(data)
                                 {
-                                    console.log(data);
-                                    var i = 0;
-                                    $('#tree').append(" <select id='cat3' name='categorie3 col-5' class='custom-select cat3' ></select>");
-                                    $('#cat3').append('<option> Faites votre choix</option>');
-                                    $.each(data, function(){
-                                        $('#cat3').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
-                                        i++;
-                                    })
-                                    /**
-                                    * prend en compte la valeur du 1er select pour générer le 3e
-                                    */
-                                    $('#cat3').change(function(){
-                                        var categorie = $('#cat3').val();
-                                        console.log(categorie);
-                                        $.ajax({
-                                            type: 'GET',
-                                            url: url + '/produits/menu/'+ categorie,
-                                            dataType: "json",
-                                            success:function(data)
-                                            {
-                                                console.log(data);
-                                                var i = 0;
-                                                $('#tree').append(" <select id='cat4' name='categorie3 col-5' class='custom-select cat4' ></select>");
-                                                $('#cat4').append('<option> Faites votre choix</option>');
-                                                $.each(data, function(){
-                                                    $('#cat4').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
-                                                    i++;
-                                                })
-                                            }
+                                    if (data.length>0) { 
+                                        var i = 0;
+                                        $('#cat3').remove();
+                                        $('#cat4').remove();
+                                        $('#tree').append(" <select id='cat3' name='categorie3 col-5' class='custom-select cat3' ></select>");
+                                        $('#cat3').append('<option value="0"> Faites votre choix</option>');
+                                        $.each(data, function(){
+                                            $('#cat3').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
+                                            i++;
                                         })
-                                    })
-                                } 
+
+                                        /**
+                                        * prend en compte la valeur du 3e select pour générer le 4e
+                                        */
+                                        $('#cat3').change(function(){
+                                            var categorie = $('#cat3').val();
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: url + '/produits/menu/'+ categorie,
+                                                dataType: "json",
+                                                success:function(data)
+                                                {
+                                                    if (data.length>0) { 
+                                                        var i = 0;
+                                                        $('#cat4').remove();
+                                                        $('#tree').append(" <select id='cat4' name='categorie3 col-5' class='custom-select cat4' ></select>");
+                                                        $('#cat4').append('<option value="0"> Faites votre choix</option>');
+                                                        $.each(data, function(){
+                                                            $('#cat4').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
+                                                            i++;
+                                                        })
+                                                    }// end if  (data.lenght>0) 4e input   
+                                                }
+                                            })
+                                        }) // 4e bloc en fonction du 3e
+                                    } // end if  (data.lenght>0) 3e input
+                                }
                             })
-                        });
+                        });// 3e bloc en fonction du 2e
                     }
                 });
-            }); 
+            });// 2e bloc en fonction du 1er 
         }
     });
 });
 
-$('#cat').change(function(){
-    var categorie = $('#cat').val();
-    console.log(categorie);
-    $.ajax({
-        type: "GET",
-        url: url + '/produits/menu/'+ categorie,
-        dataType: "json",
-        success:function(data)
-        {
-            var i = 0;
-            $('#cat2').remove();
-            $('#tree').append(" <select id='cat2' name='categorie3 col-5' class='custom-select cat2' ></select>");
-            $('#cat2').append('<option> Faites votre choix</option>');
-            $.each(data, function(){
-                $('#cat2').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
-                i++;
-            })
-        }
-    });
-});
-
-$('#cat2').change(function(){
-    var categorie = $('#cat2').val();
-    console.log(categorie);
-    $.ajax({
-        type: 'GET',
-        url: url + '/produits/menu/'+ categorie,
-        dataType: "json",
-        success:function(data)
-        {
-            var i = 0;
-            $('#cat3').append(" <select id='cat3' name='categorie3 col-5' class='custom-select cat3' ></select>");
-            $('#cat3').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
-            i++;
-        }
-    })
-});
 
 
 /**
@@ -236,10 +204,6 @@ $('#cat2').change(function(){
     })
 })
 
-$('#cat2').change(function(){
-    var categorie = $('#cat2').val();
-    console.log(categorie);
-}) */
 
 
 /**

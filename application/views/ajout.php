@@ -36,20 +36,7 @@
                             </div>
                             <!-- menu ajax  -->
                             <div id="tree">
-                                <label for="cat">Catégorie</label>
-                                <!-- <select name="categorie col-5" class="custom-select" id="cat">
-                                    <option value=''>Choisissez votre catégorie</option>
-                                </select>
-                                <select name="categorie2 col-5" class="custom-select" id="cat2">
-                                    <option value=''>Choisissez votre catégorie</option>
-                                </select>
-                                <select name="categorie3 col-5" class="custom-select" id="cat3">
-                                    <option value=''>Choisissez votre catégorie</option>
-                                </select>
-                                <select name="categorie4 col-5" class="custom-select" id="cat4">
-                                    <option value=''>Choisissez votre catégorie</option>
-                                </select> -->
-                                
+                                <label for="cat">Catégorie</label>                                
                             </div>
                         </div>
                         <div class="form-group col-5 offset-2">

@@ -13,26 +13,27 @@
 
 </head>
     <body>
-        <header>
-            <div class="container-fluid ">
-                <div class="row">
-                    <div>
-                        <img id="logo" src="<?php echo base_url("assets/images/jarditou_logo.jpg");?>" alt="logo jarditou">
-                         
-                    </div>
-                    <div class="admin col-3">
-                        <?php if($this->session->user_droit == 'a'){?>
-                            <p class="ml-5">Accès Administrateur</p>
-                            <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a><br>
-                            <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
-                        <?php } ?>
-                    </div>
-                    <div class="liens col-3">
-                        <a class="ml-5" href="<?php echo site_url('Produits/accueil'); ?>">Accueil</a>
-                        <?php if($this->session->user_droit){ ?>
-                            <a class="ml-5" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion</a>
-                        <?php } ?>
+        <div class="container">
+            <header>
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="col-5">
+                            <img id="logo" src="<?php echo base_url("assets/images/jarditou_logo.jpg");?>" alt="logo jarditou">
+                        </div>
+                        <div class="liens col-3">
+                            <a class="ml-5" href="<?php echo site_url('Produits/accueil'); ?>">Accueil</a>
+                            <?php if($this->session->user_droit){ ?>
+                                <a class="ml-5" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion</a>
+                            <?php } ?>
+                        </div>
+                        <div class="admin col-4">
+                            <?php if($this->session->user_droit == 'a'){?>
+                                <p class="ml-5">Accès Administrateur</p>
+                                <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a><br>
+                                <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
