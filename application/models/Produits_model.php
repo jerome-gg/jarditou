@@ -164,11 +164,11 @@ class Produits_model extends CI_Model
 
     }
 
-
+/**
+ * methode pour aller chercher les catégories de produits
+ */
     public function getTree($id) {
-        /**
-         * methode pour aller chercher les catégories de produits
-         */
+        
         
         if ($id){
             $requete = $this->db->query('SELECT * FROM `categories` WHERE `cat_parent` = ?',$id)->result();
@@ -178,5 +178,12 @@ class Produits_model extends CI_Model
         return $requete;
         
       }
+/**
+ *methode qui retourne le panier pour la vue 
+ */   
+    private function get_panier($data){
+        $requete = $this->db-query('SELECT * FROM `produits` WHERE `pro_id` in(?)',$data)->result();
+        return $requete;
+    }
 
 }

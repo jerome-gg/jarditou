@@ -1,5 +1,5 @@
 
-    <div class="row d-flex justify-content-around">
+    <div class="row d-flex justify-content-around nav-boutique">
         <button  type="button" class="btn btn-outline-dark" id="all">Voir tout les produits</button>
         <button  type="button" class="btn btn-outline-dark" value="1" id="outillage">Outillage</button>
         <button  type="button" class="btn btn-outline-dark" value="4" id="plants">Plants et semis</button>
@@ -17,7 +17,7 @@
               <h5 class="card-title"><?php echo $row->pro_libelle ?></h5>
               <p class="card-text"><?php echo $row->pro_description ?></p>
               <p class="card-text"><?php echo $row->pro_prix ?></p>
-              <a href="#" class="btn btn-primary">Ajouter au panier</a>
+              <a href="<?php echo site_url("Produits/panier/{$row->pro_id}") ?>" class="btn btn-primary">Ajouter au panier</a>
           </div>
         </div>
         <?php } ?>

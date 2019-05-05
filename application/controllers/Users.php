@@ -47,8 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }else{
                     $this->load->view('defaut');
                 }
-                
-   
             }
         }
 
@@ -79,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'user_name' => $requete->user_prenom,
                             'email' => $requete->user_mail,
                             'user_droit' => $requete->user_droit,
+                            'user_panier' => array(),
                         );
                         $this->session->set_userdata($newdata);
                         redirect( site_url( 'Produits/boutique'));

@@ -219,6 +219,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         */
         public function boutique()
         {
+            var_dump($_SESSION);
             $requete = $this->Produits_model->get_data_boutique();
             // Charge le résultat de $requête dans le tableau liste_produit.
             $model["liste_produit"] = $requete;
@@ -255,4 +256,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             $this->load->getTree($id);
         }
+
+        /**
+         * methode de gestion du panier
+         */
+        public function panier($id)
+        {
+            if($this->session->user_droit == 'u'||'a'){
+                
+                array_push($_SESSION['user_panier'],$id); //ajout au panier
+                $this->produits_model->get_detail()
+                $this->load->view('header');
+                $this->load->view('panier');
+                $this->load->view('footer');
+            }else{
+                $this->load->view('header');
+                $this->load->view('connexion');
+                $this->load->view('footer');
+            }
+            
+        }
+
+        
 }

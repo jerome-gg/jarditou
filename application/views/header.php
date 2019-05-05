@@ -26,13 +26,14 @@
                                 <a class="ml-5" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion</a>
                             <?php } ?>
                         </div>
-                        <div class="admin col-4">
-                            <?php if($this->session->user_droit == 'a'){?>
+
+                        <?php if($this->session->user_droit == 'a'){?>
+                            <div class="admin col-4">
                                 <p class="ml-5">Accès Administrateur</p>
                                 <a class="ml-5" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a><br>
                                 <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
-                            <?php } ?>
-                        </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </header>
