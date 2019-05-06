@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         /**
          * Liste des différentes choses charger automatiquement
          * 
-         *  libraries: 'database','session','form_validation';
+         *  libraries: 'database','session','form_validation','cart';
          *  helper: 'url','form';
          *  model: Produits_model','Users_model';
          */
@@ -220,15 +220,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function boutique()
         {
             var_dump($_SESSION);
-            $requete = $this->Produits_model->get_data_boutique();
-            // Charge le résultat de $requête dans le tableau liste_produit.
-            $model["liste_produit"] = $requete;
-            $this->load->view('header');
-            $this->load->view('boutique',$model);
-            $this->load->view('footer');
+            if($this->session->user_droit == true){
+                $requete = $this->Produits_model->get_data_boutique();
+                // Charge le résultat de $requête dans le tableau liste_produit.
+                $model["liste_produit"] = $requete;
+                $this->load->view('header');
+                $this->load->view('boutique',$model);
+                $this->load->view('footer');
+            
+            }else{
+                $this->load->view('header');
+                $this->load->view('connexion_require');
+                $this->load->view('connexion');
+                $this->load->view('footer');
+            }
+            
+            
         }
 
-         /**
+        /**
         * methode pour requete ajax renvoi tout les produits
         */
         public function liste_boutique_complete()
@@ -258,23 +268,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         /**
-         * methode de gestion du panier
-         */
-        public function panier($id)
+        * methode de gestion du panier
+        */
+        public function add_panier($id)
+        {
+            
+            if(!in_array($id, $_SESSION['user_panier'])){
+                array_push($_SESSION['user_panier'],$id); //ajout au panier 
+                
+            }
+            redirect(site_url("Produits/boutique"));
+            
+        }
+
+        public function panier()
         {
             if($this->session->user_droit == 'u'||'a'){
+                $data = implode(",",$_SESSION['user_panier']); // concatène les id issus $_SESSION['user_panier'] en une string
                 
-                array_push($_SESSION['user_panier'],$id); //ajout au panier
-                $this->produits_model->get_detail()
+                $requete = $this->Produits_model->get_panier($data);
                 $this->load->view('header');
-                $this->load->view('panier');
-                $this->load->view('footer');
-            }else{
-                $this->load->view('header');
-                $this->load->view('connexion');
+                $this->load->view('panier', $requete);
                 $this->load->view('footer');
             }
+        }
+
+        public function add_panier2($row){
             
+            $this->cart->insert();
+            var_dump($row);
+            /* redirect(site_url("Produits/boutique")); */
         }
 
         

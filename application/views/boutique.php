@@ -8,6 +8,9 @@
         <button  type="button" class="btn btn-outline-dark" value="7" id="mobilier">Mobilier de jardin</button>
         <button  type="button" class="btn btn-outline-dark" value="8" id="materiaux">Matériaux</button>
     </div>
+    
+    
+
     <div class="container" id='boutique'>
       <div class="row" id="boutique2">
         <?php foreach($liste_produit as $row){ ?>
@@ -17,10 +20,15 @@
               <h5 class="card-title"><?php echo $row->pro_libelle ?></h5>
               <p class="card-text"><?php echo $row->pro_description ?></p>
               <p class="card-text"><?php echo $row->pro_prix ?></p>
-              <a href="<?php echo site_url("Produits/panier/{$row->pro_id}") ?>" class="btn btn-primary">Ajouter au panier</a>
+              <a href="<?php echo site_url("Produits/add_panier2/{$row->pro_id}{$row->pro_prix}{$row->pro_libelle}") ?>" class="btn btn-primary">Ajouter au panier</a>
           </div>
         </div>
         <?php } ?>
       </div>
     </div>
 
+    
+
+
+    
+   

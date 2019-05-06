@@ -144,6 +144,7 @@ class Produits_model extends CI_Model
         // );
 
     }
+
 /**
  * methode qui récupère de dernier pro_id 
  * de la base pour nommer la photo du produit
@@ -179,11 +180,13 @@ class Produits_model extends CI_Model
         
       }
 /**
- *methode qui retourne le panier pour la vue 
+ * methode qui retourne le panier pour la vue 
  */   
-    private function get_panier($data){
-        $requete = $this->db-query('SELECT * FROM `produits` WHERE `pro_id` in(?)',$data)->result();
+    public function get_panier($data){
+
+        $requete = $this->db-query('SELECT * FROM `produits` WHERE `pro_id` IN (?)',$data)->result();
         return $requete;
+
     }
 
 }

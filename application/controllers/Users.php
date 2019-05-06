@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         /**
          * Liste des différentes choses charger automatiquement
          * 
-         *  libraries: 'database','session','form_validation';
+         *  libraries: 'database','session','form_validation','cart';
          *  helper: 'url','form';
          *  model: Produits_model','Users_model';
          */

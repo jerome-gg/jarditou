@@ -220,7 +220,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }
@@ -241,7 +241,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }
@@ -263,7 +263,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }
@@ -285,7 +285,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }
@@ -308,7 +308,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }
@@ -331,7 +331,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }
@@ -354,7 +354,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="#" class="btn btn-primary">Ajouter au panier</a></div></div>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <a href="http://localhost/ci/index.php/Produits/panier/'+ data[i].pro_id +'") class="btn btn-primary">Ajouter au panier</a></div></div>');
                 i++;
             })
         }

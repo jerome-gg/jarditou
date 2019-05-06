@@ -17,7 +17,7 @@
             <header>
                 <div class="container-fluid ">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-3">
                             <img id="logo" src="<?php echo base_url("assets/images/jarditou_logo.jpg");?>" alt="logo jarditou">
                         </div>
                         <div class="liens col-3">
@@ -34,6 +34,10 @@
                                 <a class="ml-5" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
                             </div>
                         <?php } ?>
+                        
+                            <a class="col-2 Panier" href="<?php echo site_url("Produits/panier"); ?>"><img src="<?php echo base_url("assets/images/panier.png");?>" id="panier" alt="panier"> </a>
+                        
+                        
                     </div>
                 </div>
             </header>

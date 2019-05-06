@@ -6,7 +6,9 @@ header{
 }
 
 #logo{
-    height: 8em;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
 }
 
 .liens{
@@ -30,8 +32,15 @@ header a{
     color: #256d48;
     font-weight: bold;
     margin:auto;
+    font-size: 1.3em;
 }
 
+#panier{
+    object-fit: contain;
+    height: 30%;
+    width: 30%;
+    
+}
 /*-------------------------------------------Footer-------------------------------------------*/
 
 .footer{
