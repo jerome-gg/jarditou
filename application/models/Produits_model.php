@@ -184,9 +184,14 @@ class Produits_model extends CI_Model
  */   
     public function get_panier($data){
 
-        $requete = $this->db-query('SELECT * FROM `produits` WHERE `pro_id` IN (?)',$data)->result();
+        $requete = $this->db->query('SELECT * FROM `produits` WHERE `pro_id` IN (?)',$data)->result();
         return $requete;
+    }
 
+    public function get_panier2($data){
+
+        $requete = $this->db->where_in('produits',$data);
+        return $requete;
     }
 
 }

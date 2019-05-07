@@ -78,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'email' => $requete->user_mail,
                             'user_droit' => $requete->user_droit,
                             'user_panier' => array(),
+                            'user_panier_total' => 0,
                         );
                         $this->session->set_userdata($newdata);
                         redirect( site_url( 'Produits/boutique'));

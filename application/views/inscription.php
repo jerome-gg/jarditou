@@ -19,7 +19,7 @@
           </div>
           <div class="form-group col-sm-6 offset-3">
             <label for="Login">Login</label>
-            <input type="password" class="form-control" id="Login" placeholder="Enter your login" name="user_login">
+            <input type="text" class="form-control" id="Login" placeholder="Enter your login" name="user_login">
             <?php echo form_error('login', '<div class= "red">', '</div>'); ?>
           </div>
           <div class="form-group col-sm-6 offset-3">

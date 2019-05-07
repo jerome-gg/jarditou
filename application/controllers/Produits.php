@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     // récupère les données du formulaire
                     $data = $this->input->post();
 
-                    //charge le model
+                    
 
                     // Envoi les données au travers d'un variable
                     $succes = $this->Produits_model->push_data($data);
@@ -219,11 +219,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         */
         public function boutique()
         {
-            var_dump($_SESSION);
+           
             if($this->session->user_droit == true){
                 $requete = $this->Produits_model->get_data_boutique();
                 // Charge le résultat de $requête dans le tableau liste_produit.
                 $model["liste_produit"] = $requete;
+                $data2 = $_SESSION['user_panier'];
+                var_dump($data2);
                 $this->load->view('header');
                 $this->load->view('boutique',$model);
                 $this->load->view('footer');
@@ -270,13 +272,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         /**
         * methode de gestion du panier
         */
-        public function add_panier($id)
+        public function add_panier()
         {
+            $data = $this->input->post();
             
-            if(!in_array($id, $_SESSION['user_panier'])){
-                array_push($_SESSION['user_panier'],$id); //ajout au panier 
+            if(!in_array($data, $_SESSION['user_panier'])){
                 
+                var_dump($data);
+                array_push($_SESSION['user_panier'],$data); //ajout au panier   
             }
+
+            
             redirect(site_url("Produits/boutique"));
             
         }
@@ -284,21 +290,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function panier()
         {
             if($this->session->user_droit == 'u'||'a'){
-                $data = implode(",",$_SESSION['user_panier']); // concatène les id issus $_SESSION['user_panier'] en une string
-                
-                $requete = $this->Produits_model->get_panier($data);
+                // $data = implode(",",$_SESSION['user_panier']); // concatène les id issus $_SESSION['user_panier'] en une string
+                // var_dump($data);
+
+                // $requete = $this->Produits_model->get_panier2($data);
+                //var_dump($data2);
+
+                $data2["panier"] = $_SESSION['user_panier'];
                 $this->load->view('header');
-                $this->load->view('panier', $requete);
+                $this->load->view('panier',$data2);
                 $this->load->view('footer');
             }
         }
 
-        public function add_panier2($row){
-            
-            $this->cart->insert();
-            var_dump($row);
-            /* redirect(site_url("Produits/boutique")); */
-        }
-
+        
         
 }

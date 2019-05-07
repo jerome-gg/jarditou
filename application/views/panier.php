@@ -1,24 +1,37 @@
 <a href="<?php echo site_url('Produits/boutique') ?>">Cliquez ici pour continuer vos achats</a>
 
+<?php 
 
-      
-         
-    <div class="container" id='boutique'>
-      <div class="row" id="boutique2">
-        <?php foreach ($_SESSION['user_panier'] as $row) { ?>
-          <div class="card col-4" style="width: 18rem;" id=card>
-            <img src="<?php echo base_url("assets/images/{$row->pro_id}.{$row->pro_photo}") ?>" class="card-img-top photo rounded mx-auto d-block" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $row->pro_libelle ?></h5>
-              <p class="card-text"><?php echo $row->pro_description ?></p>
-              <p class="card-text"><?php echo $row->pro_prix ?></p>
-              <a href="<?php echo site_url("Produits/panier/{$row->pro_id}") ?>" class="btn btn-primary">Ajouter au panier</a>
-            </div>
-          </div>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
+ 
+
+var_dump($panier);?>
 
 
+<table class="table-striped">
+  <thead class="table table-bordered ">
+      <tr>
+        <td>Photos</td>
+        <td>Libelle</td>
+        <td>Quantité</td>
+        <td>Prix</td>
+        <td>total</td>
+      </tr>
+  </thead>  
+  <tbody> 
   
+      <?php 
+      $i = 0;
+      $total = 0;
+      while ($i < count($panier)){  ?>
+          
+          <tr> 
+            <td><img class='photo rounded mx-auto d-block' src="<?php echo $panier[$i]['pro_id'].base_url("assets/images/")?>"></td>
+            <td><?php echo $panier[$i]['pro_libelle'] ?></td>
+            <td><?php echo $panier[$i]['nombre'] ?></td>
+            <td><?php echo $panier[$i]['pro_prix']; ?></td>
+          </tr>
+
+      <?php $i++; } ?>
+  </tbody>        
+</table>
+
