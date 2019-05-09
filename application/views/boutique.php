@@ -23,9 +23,9 @@
               <form method="post" action="<?php echo site_url('Produits/add_panier') ?>">
                 <label for="nombre">Nombre d'articles:</label>
                 <input type="number" id="nombre" name="nombre" min="1" max="10" value="1">
-                 <input type="hidden" id="pro_prix" name="pro_prix" value="<?php echo $row->pro_prix ?>">
-                <input type="hidden" id="pro_libelle" name="pro_libelle" value="<?php echo $row->pro_libelle ?>">
-                <input type="hidden" id="pro_photo" name="pro_photo" value="<?php echo $row->pro_photo ?>">
+                <!-- <input type="hidden" id="pro_prix" name="pro_prix" value="<?php //echo $row->pro_prix ?>">
+                <input type="hidden" id="pro_libelle" name="pro_libelle" value="<?php //echo $row->pro_libelle ?>">
+                <input type="hidden" id="pro_photo" name="pro_photo" value="<?php //echo $row->pro_photo ?>"> -->
                 <input type="hidden" id="pro_id" name="pro_id" value="<?php echo $row->pro_id ?>">
 
 <!--                 <a href="<?php// echo site_url("Produits/add_panier/{$row->pro_id}") ?>" class="btn btn-primary">Ajouter au panier</a>

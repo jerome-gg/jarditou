@@ -23,6 +23,7 @@
                         <div class="liens col-3">
                             <a class="ml-5" href="<?php echo site_url('Produits/accueil'); ?>">Accueil</a>
                             <?php if($this->session->user_droit){ ?>
+                                <a class="ml-5" href="<?php echo site_url('Produits/boutique');?>">Boutique</a>
                                 <a class="ml-5" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion</a>
                             <?php } ?>
                         </div>

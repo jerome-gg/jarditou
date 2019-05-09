@@ -275,11 +275,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function add_panier()
         {
             $data = $this->input->post();
+            $data = htmlspecialchars($data);
             
             if(!in_array($data, $_SESSION['user_panier'])){
-                
+                in_array($data, $_SESSION['user_panier']);
                 var_dump($data);
                 array_push($_SESSION['user_panier'],$data); //ajout au panier   
+            }else{
+                
             }
 
             

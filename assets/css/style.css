@@ -172,6 +172,11 @@ table{
     font-size: 2em;
     font-weight: bold;
 }
+
+.selected{
+    background-color: #343a40;
+    color:white;
+}
 /* header */
 
 /* .nav{
