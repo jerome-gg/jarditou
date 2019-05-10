@@ -219,17 +219,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         */
         public function boutique()
         {
-           
+            
             if($this->session->user_droit == true){
                 $requete = $this->Produits_model->get_data_boutique();
                 // Charge le résultat de $requête dans le tableau liste_produit.
                 $model["liste_produit"] = $requete;
                 $data2 = $_SESSION['user_panier'];
+                
                 var_dump($data2);
                 $this->load->view('header');
                 $this->load->view('boutique',$model);
                 $this->load->view('footer');
-            
+
             }else{
                 $this->load->view('header');
                 $this->load->view('connexion_require');
@@ -274,18 +275,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         */
         public function add_panier()
         {
-            $data = $this->input->post();
-            $data = htmlspecialchars($data);
-            
-            if(!in_array($data, $_SESSION['user_panier'])){
-                in_array($data, $_SESSION['user_panier']);
-                var_dump($data);
-                array_push($_SESSION['user_panier'],$data); //ajout au panier   
-            }else{
-                
-            }
 
+            $data = $this->input->post();
+            // filtrage des données
+            foreach ($data as $key =>$value) {
+                $value = htmlspecialchars($value);
+            }
+            //retourne les valeurs du $_SESSION['user_panier'] de l'index 'pro_id'. 
+            $id = array_column($_SESSION['user_panier'], 'pro_id'); 
             
+            if(in_array($data['pro_id'], $id)){ // check si le pro_id récupéré éxiste dans le tableau precédent.
+                $key = array_search($data['pro_id'], array_column($_SESSION['user_panier'],'pro_id')); // retourne le 1er index du user_panier
+                $_SESSION['user_panier'][$key]['nombre'] += $data['nombre']; // ajoute la quantité reçu sur un produit déja dans le panier
+            }else{
+                array_push($_SESSION['user_panier'],$data); //ajout au panier
+            }
+            
+
             redirect(site_url("Produits/boutique"));
             
         }
@@ -293,19 +299,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function panier()
         {
             if($this->session->user_droit == 'u'||'a'){
-                // $data = implode(",",$_SESSION['user_panier']); // concatène les id issus $_SESSION['user_panier'] en une string
-                // var_dump($data);
 
-                // $requete = $this->Produits_model->get_panier2($data);
-                //var_dump($data2);
+                
 
-                $data2["panier"] = $_SESSION['user_panier'];
+                //retourne les valeurs du $_SESSION['user_panier'] de l'index 'pro_id'.
+                
+                $id = array_column($_SESSION['user_panier'],'pro_id');
+                
+                $requete['id']  = $id;
+                
+                $requete ['panier'] = $this->Produits_model->get_panier2($id);
+
                 $this->load->view('header');
-                $this->load->view('panier',$data2);
+                $this->load->view('panier',$requete);
                 $this->load->view('footer');
             }
         }
 
+        public function panier_plus()
+        {
+            $data = $this->input->get($id,$nombre);
+            echo $data;
+            if(in_array($_SESSION['user_panier']['pro_id'], $id)){ // check si le pro_id récupéré éxiste dans le tableau precédent.
+                $key = array_search($data['pro_id'], array_column($_SESSION['user_panier'],'pro_id')); // retourne le 1er index du user_panier
+                $_SESSION['user_panier'][$key]['nombre'] += $nombre; // ajoute la quantité reçu sur un produit déja dans le panier
+            }
+        }
+        public function panier_moins($id,$nombre)
+        {
+            if(in_array($_SESSION['user_panier']['pro_id'], $id)){ // check si le pro_id récupéré éxiste dans le tableau precédent.
+                $key = array_search($data['pro_id'], array_column($_SESSION['user_panier'],'pro_id')); // retourne le 1er index du user_panier
+                $_SESSION['user_panier'][$key]['nombre'] -= $nombre; // ajoute la quantité reçu sur un produit déja dans le panier
+                return;
+            }
+        }
+
+        public function json_panier()
+        {
+                $panier = $_SESSION['user_panier'];
+                $this->output->set_content_type('application/json');
+                $this->output->set_header('Access-Control-Allow-Origin:*');
+                $this->output->set_output(json_encode($panier));
+        }
         
         
 }

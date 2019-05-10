@@ -222,7 +222,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -243,7 +243,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -265,7 +265,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -287,7 +287,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -310,7 +310,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -333,7 +333,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -356,7 +356,7 @@ $(document).ready(function(){
             $('#boutique').html('<div class="row" id="boutique2"></div>');
             var i = 0;
             $.each(data, function(){
-                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
+                $('#boutique2').append('<div class="card col-4" style="width: 18rem;" id=card> <img src="../../assets/images/' + data[i].pro_id +'.'+ data[i].pro_photo + '" ' + 'class="card-img-top photo rounded mx-auto d-block"><div class="card-body"> <h5 class="card-title">' +data[i].pro_libelle + '</h5> <p class="card-text">' + data[i].pro_description + '</p> <p class="cart-text">' + data[i].pro_prix + '€</p> <form method="post" action="http://localhost/ci/index.php/Produits/add_panier"><label for="nombre">Nombre d\'articles:</label><input type="number" id="nombre" name="nombre" min="1" max="10" value="1"><input type="hidden" id="pro_prix" name="pro_prix" value="'+data[i].pro_prix +'"><input type="hidden" id="" name="pro_id" value="'+data[i].pro_id +'"><button type="submit" class="btn btn-primary offset-3">Ajouter</button></form>');
                 i++;
             })
         }
@@ -364,7 +364,43 @@ $(document).ready(function(){
  })
 
  /**
-  * --------------------------------------------------Ajout au panier
+  * --------------------------------------------------Modification du panier
   */
 
+  $('.moins').click(function(){
+      var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
+      id = (id.substring(5,9));// on extrait l'id avec substring
+      var quantite = 2;
+      $.ajax({
+        type:"get",
+        url: url + '/produits/panier_moins/',
+        data: {id : id ,
+                nombre: quantite},
+       
+        dataType:"json",
+        success:function(data)
+        {
+            console.log(coucou);
+        }
+    })
+})
+
+  $('.plus').click(function(){
+      var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
+      id = (id.substring(5,9));// on extrait l'id avec substring
+      var quantite = 2;
+      $.ajax({
+        type:"get",
+        url: url + '/produits/panier_plus/',
+        data: {id : id ,
+                nombre: quantite},
+       
+        dataType:"json",
+        success:function(data)
+        {
+            console.log(coucou);
+        }
+    })
+
+  })
   
