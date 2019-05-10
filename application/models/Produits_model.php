@@ -182,13 +182,8 @@ class Produits_model extends CI_Model
 /**
  * methode qui retourne le panier pour la vue 
  */   
-    public function get_panier($data){
 
-        $requete = $this->db->query('SELECT * FROM `produits` WHERE `pro_id` = ?',$data)->result();
-        return $requete;
-    }
-
-    public function get_panier2($id){
+    public function fetch_produit($id){
 
         $this->db->select('*');
         $this->db->from('produits');

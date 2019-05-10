@@ -300,47 +300,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             if($this->session->user_droit == 'u'||'a'){
 
+                foreach ($_SESSION['user_panier'] as $row) {
+                    $requete = current($this->Produits_model->fetch_produit($row['pro_id']));
+                    /* var_dump($requete); */
+                        $tab[]=array(
+                            'nombre' => $row['nombre'] ,
+                            'pro_prix' => $row['pro_prix'],
+                            'pro_id' => $row['pro_id'],
+                            'pro_name' => $requete->pro_libelle,
+                            'pro_photo' => $requete->pro_id.'.'.$requete->pro_photo
+                        );
+                        
+                }
+                $toto['panier'] = $tab;
                 
-
-                //retourne les valeurs du $_SESSION['user_panier'] de l'index 'pro_id'.
-                
-                $id = array_column($_SESSION['user_panier'],'pro_id');
-                
-                $requete['id']  = $id;
-                
-                $requete ['panier'] = $this->Produits_model->get_panier2($id);
-
                 $this->load->view('header');
-                $this->load->view('panier',$requete);
-                $this->load->view('footer');
+                $this->load->view('panier',$toto);
+                $this->load->view('footer'); 
             }
         }
 
         public function panier_plus()
         {
-            $data = $this->input->get($id,$nombre);
-            echo $data;
-            if(in_array($_SESSION['user_panier']['pro_id'], $id)){ // check si le pro_id récupéré éxiste dans le tableau precédent.
-                $key = array_search($data['pro_id'], array_column($_SESSION['user_panier'],'pro_id')); // retourne le 1er index du user_panier
-                $_SESSION['user_panier'][$key]['nombre'] += $nombre; // ajoute la quantité reçu sur un produit déja dans le panier
+            $tab = array();
+            $data = $this->input->post();
+            
+            foreach ($_SESSION['user_panier'] as $row) {// on parcour le tab $_SESSION['user_panier'] pour checker les id
+                if($data['id'] == $row['pro_id']){
+                    /**
+                     * si l'id correspond on cré un nouveau tableau avec les données mise a jour.
+                     */
+                    $new_quantite =  $row['nombre'] + $data['nombre'];// on crée une variable avec le nouveau nombre de produit
+                    $tab[]=array(
+                        'nombre' => $row['nombre'] + $data['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                }else{
+                    $tab[]=array(
+                        'nombre' => (int) $row['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                }
             }
-        }
-        public function panier_moins($id,$nombre)
-        {
-            if(in_array($_SESSION['user_panier']['pro_id'], $id)){ // check si le pro_id récupéré éxiste dans le tableau precédent.
-                $key = array_search($data['pro_id'], array_column($_SESSION['user_panier'],'pro_id')); // retourne le 1er index du user_panier
-                $_SESSION['user_panier'][$key]['nombre'] -= $nombre; // ajoute la quantité reçu sur un produit déja dans le panier
-                return;
-            }
+            $_SESSION['user_panier'] = $tab;
+
+            $this->output->set_output(json_encode(array('quantite'=>$new_quantite)));// on envoi encodé en json le nouveau nbr de produit au fichier ajax 
         }
 
-        public function json_panier()
+         public function panier_moins()
         {
-                $panier = $_SESSION['user_panier'];
-                $this->output->set_content_type('application/json');
-                $this->output->set_header('Access-Control-Allow-Origin:*');
-                $this->output->set_output(json_encode($panier));
-        }
+            $tab = array();
+            $data = $this->input->post();
+            
+            foreach ($_SESSION['user_panier'] as $row) { // on parcour le tab $_SESSION['user_panier'] pour checker les id
+                if($data['id'] == $row['pro_id']){
+                    /**
+                     * si l'id correspond on cré un nouveau tableau avec les données mise a jour.
+                     */
+                    $new_quantite =  $row['nombre'] - $data['nombre'];// on crée une variable avec le nouveau nombre de produit
+                    $tab[]=array(
+                        'nombre' => $row['nombre'] - $data['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                }else{
+                    $tab[]=array(
+                        'nombre' => (int) $row['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                }
+            }
+            $_SESSION['user_panier'] = $tab;
+            $this->output->set_output(json_encode(array('quantite'=>$new_quantite))); // on envoi encodé en json le nouveau nbr de produit au fichier ajax 
+        } 
+
+        
         
         
 }

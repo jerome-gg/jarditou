@@ -366,41 +366,46 @@ $(document).ready(function(){
  /**
   * --------------------------------------------------Modification du panier
   */
+    // Retrait du panier
+    $('.moins').click(function(){
+        var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
+        id = (id.substring(5,9));// on extrait l'id avec substring
+        var quantite = 1;
+        $.ajax({
+            type:"post",
+            url: url + '/produits/panier_moins/',
+            data: {id : id ,
+                    nombre: quantite},
+            dataType:"json",
+            success:function(data)
+            {
 
-  $('.moins').click(function(){
-      var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
-      id = (id.substring(5,9));// on extrait l'id avec substring
-      var quantite = 2;
-      $.ajax({
-        type:"get",
-        url: url + '/produits/panier_moins/',
-        data: {id : id ,
-                nombre: quantite},
-       
-        dataType:"json",
-        success:function(data)
-        {
-            console.log(coucou);
-        }
+                $('#'+id).val(data.quantite);
+            }
+        })
     })
-})
+    // Ajout au panier
+    $('.plus').click(function(){
+       /*  var parent = $("td:parent"); */
+        var id = $(this).attr("name");// on récupère le name de l'icone plus "pluss+ id"
+        id = (id.substring(4,6)); // on extrait l'id avec substring
+        var quantite = 1;
+        $.ajax({
+            type:"post",
+            url: url + '/produits/panier_plus/',
+            data: {id : id ,
+                    nombre: quantite},
+            dataType:"json",
+            success:function(data)
+            {
+                parent.addClass("red");
+                $('#'+id).val(data.quantite);
+                
 
-  $('.plus').click(function(){
-      var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
-      id = (id.substring(5,9));// on extrait l'id avec substring
-      var quantite = 2;
-      $.ajax({
-        type:"get",
-        url: url + '/produits/panier_plus/',
-        data: {id : id ,
-                nombre: quantite},
-       
-        dataType:"json",
-        success:function(data)
-        {
-            console.log(coucou);
-        }
+            }
+        })
+
     })
 
-  })
-  
+    // Calcul du panier
+    

@@ -2,7 +2,8 @@
 
 <?php 
  var_dump($_SESSION['user_panier']);
-/*var_dump($panier); */
+var_dump($panier);
+
 ?>
 
 <table class="table-striped">
@@ -12,7 +13,6 @@
         <td>Libelle</td>
         <td>Quantité</td>
         <td>Prix</td>
-        <td>total</td>
       </tr>
   </thead>  
   <tbody> 
@@ -21,24 +21,21 @@
       $total = 0;
       foreach ($panier as $key=>$value){  ?>
           <tr> 
-            <td><img  class='photo rounded mx-auto d-block' src="<?php echo base_url("assets/images/{$value->pro_id}.{$value->pro_photo}") ?>"></td> 
-            <td><?php echo $value->pro_libelle; ?></td>
+            <td><img  class='photo rounded mx-auto d-block' src="<?php echo base_url("assets/images/{$value['pro_photo']}") ?>"></td> 
+            <td><?php echo $value['pro_name']; ?></td>
             <td> 
-              <div>
-                <i id="moins" name="moins<?php echo $value->pro_id ?>" class="fas fa-minus moins" value="<?php echo $value->pro_id ?>"></i>
-                <input type="text"  name="nombre" id="<?php echo $value->pro_id ?>" value="<?php echo $_SESSION['user_panier'][$key]['nombre']; ?>" size="1">
-                <i id="plus" name="plus<?php echo $value->pro_id ?>" class="fas fa-plus plus" value="<?php echo $value->pro_id ?>"></i>
-              </div>
+              <input type="text"  class="form-control" name="nombre" id="<?php echo $value['pro_id'] ?>" value="<?php echo $_SESSION['user_panier'][$key]['nombre']; ?>" size="1" readonly>
+              <i id="moins" name="moins<?php echo $value['pro_id'] ?>" class="fas fa-minus moins" value="<?php echo $value['pro_id'] ?>"></i>
+              <i id="plus" name="plus<?php echo $value['pro_id'] ?>" class="fas fa-plus plus" value="<?php echo $value['pro_id'] ?>"></i>
              </td>
-            <td><?php echo $prix = $_SESSION['user_panier'][$key]['pro_prix'] * $_SESSION['user_panier'][$key]['nombre']  ; ?></td>
-            <td><?php echo $value->pro_prix; ?></td>
+            <td><input type="text" class="form-control" name="prix" id="somme_produit" value="<?php echo $prix = $value['pro_prix'] * $_SESSION['user_panier'][$key]['nombre'];?>"  size="4" readonly></td>
+            <td></td>
             <?php $total += $prix ; ?>
           </tr>
-         
       <?php  $i++; } ?> 
   </tbody>        
 </table>
 <div>
-    <p>total</p>
-    <p><?php echo $total  ?></p>
+    <label for="total">Total :</label>
+    <input type="text" class="form-control" name="total" id="total" value="<?php echo $total  ?>" size="4" readonly>
 </div>
