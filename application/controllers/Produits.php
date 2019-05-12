@@ -226,7 +226,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $model["liste_produit"] = $requete;
                 $data2 = $_SESSION['user_panier'];
                 
-                var_dump($data2);
+                /* var_dump($_SESSION); */
                 $this->load->view('header');
                 $this->load->view('boutique',$model);
                 $this->load->view('footer');
@@ -328,7 +328,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             foreach ($_SESSION['user_panier'] as $row) {// on parcour le tab $_SESSION['user_panier'] pour checker les id
                 if($data['id'] == $row['pro_id']){
                     /**
-                     * si l'id correspond on cré un nouveau tableau avec les données mise a jour.
+                     * si l'id correspond on créer un nouveau tableau avec les données mise à jour.
                      */
                     $new_quantite =  $row['nombre'] + $data['nombre'];// on crée une variable avec le nouveau nombre de produit
                     $tab[]=array(
@@ -345,8 +345,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
             }
             $_SESSION['user_panier'] = $tab;
-
-            $this->output->set_output(json_encode(array('quantite'=>$new_quantite)));// on envoi encodé en json le nouveau nbr de produit au fichier ajax 
+            // on envoi encodé en json le nouveau nbr de produit au fichier ajax 
+            $this->output->set_output(json_encode(array('quantite'=>$new_quantite)));
         }
 
          public function panier_moins()
@@ -355,9 +355,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data = $this->input->post();
             
             foreach ($_SESSION['user_panier'] as $row) { // on parcour le tab $_SESSION['user_panier'] pour checker les id
-                if($data['id'] == $row['pro_id']){
+                if($data['id'] == $row['pro_id'] && $row['nombre']>1 ){
                     /**
-                     * si l'id correspond on cré un nouveau tableau avec les données mise a jour.
+                     * si l'id correspond on créer un nouveau tableau avec les données mise à jour.
                      */
                     $new_quantite =  $row['nombre'] - $data['nombre'];// on crée une variable avec le nouveau nombre de produit
                     $tab[]=array(
@@ -374,7 +374,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
             }
             $_SESSION['user_panier'] = $tab;
-            $this->output->set_output(json_encode(array('quantite'=>$new_quantite))); // on envoi encodé en json le nouveau nbr de produit au fichier ajax 
+            // on envoi encodé en json le nouveau nbr de produit au fichier ajax
+            $this->output->set_output(json_encode(array('quantite'=>$new_quantite)));  
         } 
 
         

@@ -1,7 +1,7 @@
 <a href="<?php echo site_url('Produits/boutique') ?>">Cliquez ici pour continuer vos achats</a>
 
 <?php 
- var_dump($_SESSION['user_panier']);
+var_dump($_SESSION['user_panier']);
 var_dump($panier);
 
 ?>
