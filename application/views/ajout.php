@@ -26,14 +26,14 @@
                     </div>
                     <div class="row cat-lib">                                                   <!-- champs catégorie et libélé -->
                         <div class="categorie col-5 ">
-                            <p class="P">Catégorie</p>
+                            <!-- <p class="P">Catégorie</p>
                             <div class="input-group ">
                                 <select class="custom-select" name="pro_cat_id" id="categorie" >
-                                    <?php foreach($liste_categorie as $row){ ?>
-                                    <option value='<?php echo $row->cat_id ?>'><?php echo $row->cat_nom ?></option>
-                                    <?php }?>
+                                    <?php //foreach($liste_categorie as $row){ ?>
+                                    <option value='<?php //echo $row->cat_id ?>'><?php //echo $row->cat_nom ?></option>
+                                    <?php //}?>
                                 </select>
-                            </div>
+                            </div> -->
                             <!-- menu ajax  -->
                             <div id="tree">
                                 <label for="cat">Catégorie</label>                                

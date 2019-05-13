@@ -102,6 +102,7 @@ $(document).ready(function(){
             $('#cat').change(function(){
                 var categorie = $('#cat').val();
                 $.ajax({
+
                     type: "GET",
                     url: url + '/produits/menu/'+ categorie,
                     dataType: "json",
@@ -366,30 +367,29 @@ $(document).ready(function(){
  /**
   * --------------------------------------------------Modification du panier
   */
-    // Retrait du panier
-    $('.moins').click(function(){
-        var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
-        id = (id.substring(5,9));// on extrait l'id avec substring
-        var quantite = 1;
-        $.ajax({
-            type:"post",
-            url: url + '/produits/panier_moins/',
-            data: {id : id ,
-                    nombre: quantite},
-            dataType:"json",
-            success:function(data)
-            {
 
-                $('#'+id).val(data.quantite);
-            }
+    //Total panier au chargement de la page 
+    $(document).ready(function(){
+        var total = 0;
+        var i = 0;
+        var a = $(".somme");// récupération de toute les éléments portant la classe somme
+        a.val();// recupération de la valeur des éléments portant la classe somme sous forme d'objet
+        $.each(a,function(){ // boucle sur l'objet de tableau 
+            total += parseFloat( a[i].value);
+            i++;
+             
         })
-    })
+        $('#total').val(total);// assigantion de la valeur total 
+    });
+
     // Ajout au panier
     $('.plus').click(function(){
-       /*  var parent = $("td:parent"); */
+    /*  var parent = $("td:parent"); */
         var id = $(this).attr("name");// on récupère le name de l'icone plus "pluss+ id"
-        id = (id.substring(4,6)); // on extrait l'id avec substring
+        id = (id.substring(4)); // on extrait l'id avec substring
         var quantite = 1;
+        var total = 0;
+        var i = 0;
         $.ajax({
             type:"post",
             url: url + '/produits/panier_plus/',
@@ -398,14 +398,59 @@ $(document).ready(function(){
             dataType:"json",
             success:function(data)
             {
-                parent.addClass("red");
-                $('#'+id).val(data.quantite);
-                
 
+                $('#'+id).val(data.qte[0].nombre);// met à jour le nombre d'articles
+                $('#somme'+id).val(data.qte[0].nombre * data.qte[0].pro_prix);// met à jour le total des articles
+                /**
+                 * calcul de la somme total
+                 */
+                var a = $(".somme");// recupération de toute les éléments portant la classe somme
+                a.val();// recupération de la valeur des éléments portant la classe somme sous forme d'objet
+                $.each(a,function(){ // boucle sur l'objet de tableau 
+
+                    total += parseFloat( a[i].value);
+                    i++;
+                     
+                })
+                $('#total').val(total);// assigantion de la valeur total
             }
         })
-
     })
 
-    // Calcul du panier
+    // Retrait du panier
+    $('.moins').click(function(){
+        var id = $(this).attr("name");// on récupère le name de l'icone moins "moins+ id"
+        id = (id.substring(5));// on extrait l'id avec substring
+        var quantite = 1;
+        var total = 0;
+        var i = 0;
+        $.ajax({
+            type:"post",
+            url: url + '/produits/panier_moins/',
+            data: {id : id ,
+                    nombre: quantite},
+            dataType:"json",
+            success:function(data)
+            {
+                $('#'+id).val(data.qte[0].nombre);
+                $('#somme'+id).val(data.qte[0].nombre * data.qte[0].pro_prix);
+                /**
+                 * calcul de la somme total
+                 */
+                var a = $(".somme");// recupération de toute les éléments portant la classe somme
+                a.val();// recupération de la valeur des éléments portant la classe somme sous forme d'objet
+                $.each(a,function(){ // boucle sur l'objet de tableau 
+                    total += parseFloat( a[i].value);
+                    i++;
+                     
+                })
+                $('#total').val(total);// assigantion de la valeur total
+            }
+        })
+    })
+    
+    
+
+    
+
     

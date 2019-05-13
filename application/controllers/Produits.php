@@ -299,8 +299,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function panier()
         {
             if($this->session->user_droit == 'u'||'a'){
-
-                foreach ($_SESSION['user_panier'] as $row) {
+                if(count($_SESSION['user_panier'])){
+                    foreach ($_SESSION['user_panier'] as $row) {
                     $requete = current($this->Produits_model->fetch_produit($row['pro_id']));
                     /* var_dump($requete); */
                         $tab[]=array(
@@ -311,12 +311,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'pro_photo' => $requete->pro_id.'.'.$requete->pro_photo
                         );
                         
+                    }
+                    $toto['panier'] = $tab;
+                    
+                    $this->load->view('header');
+                    $this->load->view('panier',$toto);
+                    $this->load->view('footer'); 
+                }else{
+                    $this->load->view('header');
+                    $this->load->view('panier_vide');
+                    $this->load->view('footer');
                 }
-                $toto['panier'] = $tab;
                 
-                $this->load->view('header');
-                $this->load->view('panier',$toto);
-                $this->load->view('footer'); 
             }
         }
 
@@ -324,7 +330,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             $tab = array();
             $data = $this->input->post();
-            
+            $tab_ref = array(); // création d'un array pour tranmettre en Ajax
             foreach ($_SESSION['user_panier'] as $row) {// on parcour le tab $_SESSION['user_panier'] pour checker les id
                 if($data['id'] == $row['pro_id']){
                     /**
@@ -332,6 +338,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      */
                     $new_quantite =  $row['nombre'] + $data['nombre'];// on crée une variable avec le nouveau nombre de produit
                     $tab[]=array(
+                        'nombre' => $row['nombre'] + $data['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                    $tab_ref[]=array( // array envoyer en ajax
                         'nombre' => $row['nombre'] + $data['nombre'],
                         'pro_prix' => $row['pro_prix'],
                         'pro_id' => $row['pro_id']
@@ -346,14 +357,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             $_SESSION['user_panier'] = $tab;
             // on envoi encodé en json le nouveau nbr de produit au fichier ajax 
-            $this->output->set_output(json_encode(array('quantite'=>$new_quantite)));
+            $this->output->set_output(json_encode(array('qte'=>$tab_ref)));
         }
 
          public function panier_moins()
         {
             $tab = array();
             $data = $this->input->post();
-            
+            $tab_ref = array();// création d'un array pour tranmettre en Ajax
             foreach ($_SESSION['user_panier'] as $row) { // on parcour le tab $_SESSION['user_panier'] pour checker les id
                 if($data['id'] == $row['pro_id'] && $row['nombre']>1 ){
                     /**
@@ -361,6 +372,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      */
                     $new_quantite =  $row['nombre'] - $data['nombre'];// on crée une variable avec le nouveau nombre de produit
                     $tab[]=array(
+                        'nombre' => $row['nombre'] - $data['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                    $tab_ref[]=array(// array envoyer en ajax
                         'nombre' => $row['nombre'] - $data['nombre'],
                         'pro_prix' => $row['pro_prix'],
                         'pro_id' => $row['pro_id']
@@ -375,9 +391,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             $_SESSION['user_panier'] = $tab;
             // on envoi encodé en json le nouveau nbr de produit au fichier ajax
-            $this->output->set_output(json_encode(array('quantite'=>$new_quantite)));  
+            $this->output->set_output(json_encode(array('qte'=>$tab_ref)));  
         } 
 
+        public function panier_delete($id)
+        {
+            $tab = array();
+            foreach($_SESSION['user_panier'] as $row){// on parcour le tab $_SESSION['user_panier'] pour checker les id
+                if ($row['pro_id'] != $id){
+                    $tab[]=array(
+                        'nombre' => $row['nombre'],
+                        'pro_prix' => $row['pro_prix'],
+                        'pro_id' => $row['pro_id']
+                    );
+                }
+            }
+            $_SESSION['user_panier'] = $tab;
+            redirect(site_url("Produits/panier"));
+        }
         
         
         
