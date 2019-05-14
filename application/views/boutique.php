@@ -26,14 +26,12 @@
             <div class="mb-2">
               <form method="post" action="<?php echo site_url('Produits/add_panier') ?>" >
                 <label for="nombre">Nombre d'articles:</label>
-                <input type="number" id="nombre" name="nombre" min="1" max="10" value="1" class="" size="2">
+                <input type="number" id="nombre" class="rounded boutique-input" name="nombre" min="1" max="10" value="1" class="" size="2">
                 <input type="hidden" id="pro_prix" name="pro_prix" value="<?php echo $row->pro_prix ?>">
                 <input type="hidden" id="pro_id" name="pro_id" value="<?php echo $row->pro_id ?>">
-              <button type="submit" class="btn btn-primary offset-3 ajout">Ajouter</button>
+                <button type="submit" class="btn btn-primary offset-3 ajout">Ajouter</button>
               </form>
             </div>
-
-            
         </div>
         <?php } ?>
       </div>

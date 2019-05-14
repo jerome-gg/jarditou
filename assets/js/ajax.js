@@ -90,7 +90,10 @@ $(document).ready(function(){
         success:function(data)
         {
             var i = 0;
-            $('#tree').append('<select name="categorie col-5" class="custom-select" id="cat"></select>');
+            $('#cat2').remove();
+            $('#cat3').remove();
+            $('#cat4').remove();
+            $('#tree').append('<select  class="custom-select" id="cat"></select>');
             $('#cat').append('<option value="">Sélectionnez votre catégorie</option>');
             $.each(data, function(){
                 $('#cat').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
@@ -101,6 +104,9 @@ $(document).ready(function(){
              */
             $('#cat').change(function(){
                 var categorie = $('#cat').val();
+                $('#categorie').val(categorie);
+                var a = $('#categorie').val();
+                console.log(a);
                 $.ajax({
 
                     type: "GET",
@@ -112,7 +118,7 @@ $(document).ready(function(){
                         $('#cat2').remove();
                         $('#cat3').remove();
                         $('#cat4').remove();
-                        $('#tree').append(" <select id='cat2' name='categorie3 col-5' class='custom-select cat2' ></select>");
+                        $('#tree').append(" <select id='cat2'  class='custom-select cat2' ></select>");
                         $('#cat2').append('<option value="0"> Faites votre choix</option>');
                         $.each(data, function(){
                             $('#cat2').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
@@ -123,6 +129,9 @@ $(document).ready(function(){
                          */
                         $('#cat2').change(function(){
                             var categorie = $('#cat2').val();
+                            $('#categorie').val(categorie);
+                            var a = $('#categorie').val();
+                            console.log(a);
                             $.ajax({
                                 type: 'GET',
                                 url: url + '/produits/menu/'+ categorie,
@@ -133,7 +142,7 @@ $(document).ready(function(){
                                         var i = 0;
                                         $('#cat3').remove();
                                         $('#cat4').remove();
-                                        $('#tree').append(" <select id='cat3' name='categorie3 col-5' class='custom-select cat3' ></select>");
+                                        $('#tree').append(" <select id='cat3'  class='custom-select cat3' ></select>");
                                         $('#cat3').append('<option value="0"> Faites votre choix</option>');
                                         $.each(data, function(){
                                             $('#cat3').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
@@ -145,6 +154,9 @@ $(document).ready(function(){
                                         */
                                         $('#cat3').change(function(){
                                             var categorie = $('#cat3').val();
+                                            $('#categorie').val(categorie);
+                                            var a = $('#categorie').val();
+                                            console.log(a);
                                             $.ajax({
                                                 type: 'GET',
                                                 url: url + '/produits/menu/'+ categorie,
@@ -154,13 +166,22 @@ $(document).ready(function(){
                                                     if (data.length>0) { 
                                                         var i = 0;
                                                         $('#cat4').remove();
-                                                        $('#tree').append(" <select id='cat4' name='categorie3 col-5' class='custom-select cat4' ></select>");
+                                                        $('#tree').append(" <select id='cat4'  class='custom-select cat4' ></select>");
                                                         $('#cat4').append('<option value="0"> Faites votre choix</option>');
                                                         $.each(data, function(){
                                                             $('#cat4').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
                                                             i++;
                                                         })
-                                                    }// end if  (data.lenght>0) 4e input   
+                                                        
+                                                    }// end if  (data.lenght>0) 4e input
+                                                    // bloc pour la selection de la 4e catégorie.
+                                                    $('#cat4').change(function(){
+                                                        var categorie = $('#cat4').val();
+                                                        
+                                                        $('#categorie').val(categorie);
+                                                        var a = $('#categorie').val();
+                                                        console.log(a);
+                                                    }) 
                                                 }
                                             })
                                         }) // 4e bloc en fonction du 3e
@@ -174,6 +195,7 @@ $(document).ready(function(){
         }
     });
 });
+
 
 
 
@@ -449,7 +471,9 @@ $(document).ready(function(){
         })
     })
     
-    
+/**
+ * ------------------------------------------------------Ajout d'article
+ */
 
     
 

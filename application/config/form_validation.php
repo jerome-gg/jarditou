@@ -43,6 +43,16 @@
                     ),
 
                     array(
+                        'field'=> 'pro_cat_id',
+                        'label'=> 'categorie',
+                        'rules'=> 'required|in_list[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]',
+                        'errors'=> array(
+                            'required' => 'Veuillez remplir ce champ.',
+                            'in_list' => 'Veuillez entrer une saisie valide plzzzz.',
+                        )
+                    ),
+
+                    array(
                         'field'=> 'pro_prix',
                         'label'=> 'prix',
                         'rules'=> 'required|max_length[9]|regex_match[/^([0-9]+)([.]?[0-9]+)?$/]',

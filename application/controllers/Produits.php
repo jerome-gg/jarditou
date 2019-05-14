@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function ajout()
         {
             if ($this->session->user_droit=="a") {
-
+                $this->form_validation->set_error_delimiters('<div class="red">', '</div>'); // permet d'ajouter une div d'erreur
                 if ($this->form_validation->run('Produits/ajout') == FALSE)
                 {
                     /**
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      */
                     $categorie = $this->Produits_model->show_cat();
                     $model["liste_categorie"] = $categorie;
-
+                    
                     // si le formulaire n'est pas envoyé on affiche les vues
                     $this->load->view('header');
                     $this->load->view('ajout', $model); 

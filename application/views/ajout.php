@@ -14,7 +14,7 @@
                             <div class="red" id="errRefSaisie">
                                 <p>Veuillez entrer une saisie valide.</p>
                             </div>
-                            <?php echo form_error('pro_ref', '<div class= "red">', '</div>'); ?>
+                            <?php echo form_error('pro_ref'); ?>
                         </div>                                                           
                         <div class="form-group col-5 offset-2">                                                    
                             <label for="couleur">Couleur</label>
@@ -36,19 +36,22 @@
                             </div> -->
                             <!-- menu ajax  -->
                             <div id="tree">
-                                <label for="cat">Catégorie</label>                                
+                                <label for="cat">Catégorie</label>                             
                             </div>
+                            <input type="hidden" name="pro_cat_id" id="categorie" value=""> 
+                            <?php echo form_error('pro_cat_id'); ?> 
                         </div>
                         <div class="form-group col-5 offset-2">
                             <label for="libelle">Libéllé</label>
                             <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit" size="200" >
+                            
                             <div class="red" id="errLibVide">
                                 <p>Veuillez remplir le champ.</p>
                             </div>
                             <div class="red" id="errLibSaisie">
                                 <p>Veuillez entrer une saisie valide.</p>
                             </div>
-                            <?php echo form_error('pro_libelle', '<div class= "red" >', '</div>'); ?>
+                            <?php echo form_error('pro_libelle'); ?>
                         </div>
                         
                     </div>
@@ -60,7 +63,7 @@
                         <div class="red" id="errDescSaisie">
                             <p>Veuillez entrer une saisie valide.</p>
                         </div>
-                        <?php echo form_error('pro_description', '<div class= "red" >', '</div>'); ?>
+                        <?php echo form_error('pro_description'); ?>
                     </div>
                     <div class="row">                                                           <!-- champs prix et stock -->
                         <div class="form-group col-5">                            
@@ -72,7 +75,7 @@
                             <div class="red" id="errPrixSaisie">
                                 <p>Veuillez entrer une saisie valide.</p>
                             </div>
-                            <?php echo form_error('pro_prix', '<div class= "red" >', '</div>'); ?>
+                            <?php echo form_error('pro_prix'); ?>
                         </div>
                         
                         <div class="form-group col-5 offset-2">
@@ -84,7 +87,7 @@
                             <div class="red" id="errRStkSaisie">
                                 <p>Veuillez entrer une saisie valide.</p>
                             </div>
-                            <?php echo form_error('pro_stock', '<div class= "red" >', '</div>'); ?>
+                            <?php echo form_error('pro_stock'); ?>
                         </div>
                         
                     </div>

@@ -7,6 +7,7 @@ var filtre5 = new RegExp("^[[\'. A-Za-zéèàç]*$");// 0 ou plusieurs caractèr
 var filtre6 = new RegExp("^[A-Za-z]*$");// 0 ou plusieurs caractères couleur
 var filtre7 = new RegExp("^([0-9]+)([.]?[0-9]+)?$"); // champ prix
 
+
 $(document).ready(function()
 {
     $('#errRefVide, #errRefSaisie, #errLibVide, #errLibSaisie, #errPrixVide, #errPrixSaisie, #errRStkVide, #errRStkSaisie, #errCoulSaisie, #errDescSaisie ').hide();
@@ -17,6 +18,7 @@ $(document).ready(function()
     var erreur4 = false;
     var erreur5 = false;
     var erreur6 = false;
+    
 
     // contrôle du champ référence
     $("#reference").blur(function(){
@@ -114,6 +116,7 @@ $(document).ready(function()
             erreur6 = true;
         }
     })
+    
     
     // contrôle du boutton valider et annule l'envoi si un défaut
     $("#valider").click(function(event){
@@ -214,6 +217,5 @@ $(document).ready(function()
             }
 
     }) 
- 
 
 });
