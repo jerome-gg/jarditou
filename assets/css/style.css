@@ -71,6 +71,7 @@ header a{
 
 .boutique-input{
     width:50px;
+    margin-left: 2%;
 }
 
 
@@ -118,8 +119,8 @@ table{
 
 .photo{
     width:35%;
-    /* max-width: 25%;
-    min-width: 50%; */
+    /* max-width: 25%; */
+    min-width: 50%;
 }
 .btn_detail{
     padding-left:15px; 
@@ -185,11 +186,19 @@ table{
 
 .hauteur_photo{
     height: 30%;
+    overflow: hidden;
 }
 
 .ajout{
     float: right;
 }
+
+.card{
+    width: 18rem;
+    height: 35rem;
+}
+
+
 /* header */
 
 /* .nav{

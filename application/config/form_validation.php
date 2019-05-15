@@ -99,20 +99,19 @@
                     array(
                         'field'=> 'pro_ref',
                         'label'=> 'reference',
-                        'rules'=> 'required|is_unique[produits.pro_ref]|max_length[10]|regex_match[/^([A-za-z0-9]+)$/]',
+                        'rules'=> 'required|max_length[10]|regex_match[/^([A-Za-z0-9]+)$/]',
                         'errors'=> array(
                             'max_length' => 'Veuillez entrer une saisie valide.',
                             'required' => 'Veuillez remplir ce champ.',
                             'regex_match' => 'Saisie limité à 10 caractères.',
-                            'is_unique' => 'Référence éxistante.',
-
+                            
                         )
                     ),
 
                     array(
                         'field'=> 'pro_libelle',
                         'label'=> 'libelle',
-                        'rules'=> 'required|max_length[200]|regex_match[/^([A-za-z0-9]+)$/]',
+                        'rules'=> 'required|max_length[200]|regex_match[/^([A-Za-z0-9]+)$/]',
                         'errors'=> array(
                             'required' => 'Veuillez remplir ce champ.',
                             'max_length' => 'Saisie limité à 200 caractères.',

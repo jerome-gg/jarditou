@@ -6,9 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         /**
          * Liste des différentes choses charger automatiquement
          * 
-         *  libraries: 'database','session','form_validation','cart';
+         *  libraries: 'database','session','form_validation','pagination';
          *  helper: 'url','form';
-         *  model: Produits_model','Users_model';
+         *  model: Produits_model','Users_model','Pagination_model';
          */
 
         public function accueil()
@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     // Envoi les données au travers d'un variable
                     $succes = $this->Produits_model->push_data($data);
 
-/*-------------------Photo------------------*/
+                    /*-------------------Photo------------------*/
 
 
                     if(($_FILES['fichier']['size'])!=0){
@@ -170,6 +170,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          public function modif($id)
         {
+            //$this->uri->segment(3);
+
             if ($this->session->user_droit=="a") {
 
                 if ($this->form_validation->run() == FALSE)
@@ -221,15 +223,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             
             if($this->session->user_droit == true){
-                $requete = $this->Produits_model->get_data_boutique();
+                /**
+                 * Pagination
+                 */
+                
+                $this->load->model('Pagination_model');
+                $config = array();
+                $config['base_url'] = site_url('produits/boutique');
+                $config['total_rows'] = $this->Pagination_model->get_counter(); // représente le total d'article dans la base de données
+                $config['per_page'] = 9; // nombre d'article par page
+                $config["uri_segment"] = 3;
+
+                $this->pagination->initialize($config); 
+
+                $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+                $data['link'] = $this->pagination->create_links(); // retourne une chaine de caractère vide lorsqu'il n'y a pas de pagination.
+                
+                $data['liste_produit'] = $this->Pagination_model->get_prod($config['per_page'], $page);
+                
+                $this->load->view('header');
+                $this->load->view('boutique',$data);
+                $this->load->view('footer');
+
+                /* $requete = $this->Produits_model->get_data_boutique();
                 // Charge le résultat de $requête dans le tableau liste_produit.
                 $model["liste_produit"] = $requete;
                 $data2 = $_SESSION['user_panier'];
                 
-                /* var_dump($_SESSION); */
+                var_dump($_SESSION); 
+                
                 $this->load->view('header');
                 $this->load->view('boutique',$model);
-                $this->load->view('footer');
+                $this->load->view('footer'); */
 
             }else{
                 $this->load->view('header');
@@ -304,8 +330,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $requete = current($this->Produits_model->fetch_produit($row['pro_id']));
                     /* var_dump($requete); */
                         $tab[]=array(
-                            'nombre' => $row['nombre'] ,
-                            'pro_prix' => $row['pro_prix'],
+                            'nombre' => (int) $row['nombre'] ,
+                            'pro_prix' =>(float) $row['pro_prix'],
                             'pro_id' => $row['pro_id'],
                             'pro_name' => $requete->pro_libelle,
                             'pro_photo' => $requete->pro_id.'.'.$requete->pro_photo
@@ -409,6 +435,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $_SESSION['user_panier'] = $tab;
             redirect(site_url("Produits/panier"));
         }
+        
         
         
         
