@@ -175,7 +175,7 @@ table{
 }
 
 .card-title{
-    font-size: 2em;
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -196,6 +196,15 @@ table{
 .card{
     width: 18rem;
     height: 35rem;
+}
+
+.cardText{
+    height: 50%;
+    overflow-y: auto;
+}
+.boxPhoto{
+    height: 30%;
+    overflow: hidden;
 }
 
 

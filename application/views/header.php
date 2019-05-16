@@ -41,7 +41,10 @@
                             </div>
                         <?php } ?>
                         
-                            <a class="col-2 Panier" href="<?php echo site_url("Produits/panier"); ?>"><img src="<?php echo base_url("assets/images/panier.png");?>" id="panier" alt="panier"> </a>
+                        <?php if($this->session->user_droit){ ?>
+                                                            <a class="col-2 Panier" href="<?php echo site_url("Produits/panier"); ?>"><img src="<?php echo base_url("assets/images/panier.png");?>" id="panier" alt="panier"> </a>
+
+                            <?php } ?>
                         
                         
                     </div>

@@ -221,41 +221,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         */
         public function boutique()
         {
+
             
             if($this->session->user_droit == true){
-                /**
-                 * Pagination
-                 */
                 
-                $this->load->model('Pagination_model');
-                $config = array();
-                $config['base_url'] = site_url('produits/boutique');
-                $config['total_rows'] = $this->Pagination_model->get_counter(); // représente le total d'article dans la base de données
-                $config['per_page'] = 9; // nombre d'article par page
-                $config["uri_segment"] = 3;
+                    /**
+                    * Pagination
+                    */
+                    
+                    /* $this->load->model('Pagination_model');
+                    $config = array();
+                    $config['base_url'] = site_url('produits/boutique');
+                    $config['total_rows'] = $this->Pagination_model->get_counter(); // représente le total d'article dans la base de données
+                    $config['per_page'] = 9; // nombre d'article par page
+                    $config["uri_segment"] = 3;
 
-                $this->pagination->initialize($config); 
+                    $this->pagination->initialize($config); 
 
-                $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+                    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-                $data['link'] = $this->pagination->create_links(); // retourne une chaine de caractère vide lorsqu'il n'y a pas de pagination.
+                    $data['link'] = $this->pagination->create_links(); // retourne une chaine de caractère vide lorsqu'il n'y a pas de pagination.
+                    
+                    $data['liste_produit'] = $this->Pagination_model->get_prod($config['per_page'], $page);
+                    
+                    $this->load->view('header');
+                    $this->load->view('boutique',$data);
+                    $this->load->view('footer'); */
                 
-                $data['liste_produit'] = $this->Pagination_model->get_prod($config['per_page'], $page);
                 
-                $this->load->view('header');
-                $this->load->view('boutique',$data);
-                $this->load->view('footer');
 
-                /* $requete = $this->Produits_model->get_data_boutique();
+                //$requete = $this->Produits_model->get_data_boutique();
                 // Charge le résultat de $requête dans le tableau liste_produit.
-                $model["liste_produit"] = $requete;
+                //$model["liste_produit"] = $requete;
                 $data2 = $_SESSION['user_panier'];
                 
-                var_dump($_SESSION); 
+                
                 
                 $this->load->view('header');
-                $this->load->view('boutique',$model);
-                $this->load->view('footer'); */
+                $this->load->view('boutique');
+                $this->load->view('footer');
 
             }else{
                 $this->load->view('header');
@@ -327,27 +331,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             if($this->session->user_droit == 'u'||'a'){
                 if(count($_SESSION['user_panier'])){
                     foreach ($_SESSION['user_panier'] as $row) {
-                    $requete = current($this->Produits_model->fetch_produit($row['pro_id']));
-                    /* var_dump($requete); */
+                        $requete = current($this->Produits_model->fetch_produit($row['pro_id']));
                         $tab[]=array(
                             'nombre' => (int) $row['nombre'] ,
                             'pro_prix' =>(float) $row['pro_prix'],
                             'pro_id' => $row['pro_id'],
                             'pro_name' => $requete->pro_libelle,
                             'pro_photo' => $requete->pro_id.'.'.$requete->pro_photo
-                        );
+                        ); 
+                        }
+                        $toto['panier'] = $tab;
                         
-                    }
-                    $toto['panier'] = $tab;
-                    
-                    $this->load->view('header');
-                    $this->load->view('panier',$toto);
-                    $this->load->view('footer'); 
+                        $this->load->view('header');
+                        $this->load->view('panier',$toto);
+                        $this->load->view('footer'); 
                 }else{
                     $this->load->view('header');
                     $this->load->view('panier_vide');
                     $this->load->view('footer');
                 }
+                
+                
                 
             }
         }
