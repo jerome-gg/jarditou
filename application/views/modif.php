@@ -34,7 +34,7 @@
                         <div class="categorie col-5 ">
                             <p class="P">Catégorie</p>
                             <div class="input-group ">
-                                <select class="custom-select" name="pro_cat_id" id="categorie" >
+                                <select class="custom-select" name="cat_id" id="categorie" >
                                     <?php foreach($liste_categorie as $row){ ?>
                                     <option value='<?php echo $row->cat_id ?>'><?php echo $row->cat_nom ?></option>
                                     <?php }?>
@@ -56,7 +56,7 @@
 
                     <div class="form-group">                                                    <!-- champ description -->
                         <label for="description">Description</label>
-                        <textarea class="form-control" name="pro_description" id="description" rows="3" value="<?php echo $requete->pro_description; ?>"></textarea>
+                        <textarea class="form-control" name="pro_description" id="description" rows="3"><?php echo $requete->pro_description; ?></textarea>
                         <div class="red" id="errDescSaisie">
                             <p>Veuillez entrer une saisie valide.</p>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="row">                                                           <!-- champs prix et stock -->
                         <div class="form-group col-5">
                             <label for="prix">Prix</label>
-                            <input type="text" class="form-control" name="pro_prix" id="prix" value="<?php echo $requete->pro_prix; ?>">
+                            <input type="text" class="form-control" name="pro_prix_ht" id="prix" value="<?php echo $requete->pro_prix_ht; ?>">
                             <div class="red" id="errPrixVide">
                                 <p>Veuillez remplir le champ.</p>
                             </div>
@@ -99,23 +99,39 @@
                         </div> 
                     </div> 
                                                                                                 <!-- champs produit bloqué  -->
-                   <?php if($requete->pro_bloque){ ?>
-                    <div class="form-group">
-                        <p>Produit bloqué :</p>
-                        <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1" checked>
-                        <label for="bloque_oui">oui</label>
-                        <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0">
-                        <label for="bloque_non">non</label>
+
+                    <div class="row">
+                        <div class="chieur col-5">
+                            <p class="P">Photo </p>
+                            <div class="input-group mb-2 ">
+                                <div class="custom-file">
+                                    <input type="file" class="input-fichier " id="photo" name="fichier">
+                                    <label  for="customFile"></label>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="col-5 offset-2">
+                            <?php if($requete->pro_bloque){ ?>
+                            <div class="form-group">
+                                <p>Produit bloqué :</p>
+                                <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1" checked>
+                                <label for="bloque_oui">oui</label>
+                                <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0">
+                                <label for="bloque_non">non</label>
+                            </div>
+                        <?php }else{ ?>
+                            <div class="form-group">
+                                <p>Produit bloqué :</p>
+                                <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1">
+                                <label for="bloque_oui">oui</label>
+                                <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0" checked>
+                                <label for="bloque_non">non</label>
+                            </div> 
+                        <?php } ?>
+                        </div>
+                        
                     </div>
-                   <?php }else{ ?>
-                        <div class="form-group">
-                            <p>Produit bloqué :</p>
-                            <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1">
-                            <label for="bloque_oui">oui</label>
-                            <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0" checked>
-                            <label for="bloque_non">non</label>
-                        </div> 
-                    <?php } ?>
+                   
                     
 
                            

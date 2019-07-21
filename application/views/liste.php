@@ -1,4 +1,4 @@
-<?php if((isset($_SESSION)) && ($_SESSION['user_droit'] == 'a')){ ?>
+
 
         <h1>Liste de produits</h1>
         <div class="container">
@@ -9,7 +9,7 @@
                         <td>Id</td>
                         <td>Ref</td>
                         <td>Libelle</td>
-                        <td>Prix</td>
+                        <td>Prix HT</td>
                         <td>Stock</td>
                         <td>Couleur</td>
                         <td>Date d'ajout</td>
@@ -26,11 +26,11 @@
                             $ok = 'non';
                         }?>
                         <tr>
-                            <td><img class='photo rounded mx-auto d-block' src="<?php echo base_url("assets/images/{$row->pro_id}.{$row->pro_photo}")?>"></td>
+                            <td><img class=' photo rounded mx-auto d-block img-responsive' src="<?php echo base_url("assets/images/{$row->pro_id}.{$row->pro_photo}")?>"></td>
                             <td><?php echo $row->pro_id; ?></td>
                             <td><a href="<?php echo site_url('Produits/detail?id='). $row->pro_id ?>"><?php echo $row->pro_ref; ?></a> </td>
                             <td><?php echo $row->pro_libelle; ?></td>
-                            <td><?php echo $row->pro_prix; ?></td>
+                            <td><?php echo $row->pro_prix_ht; ?></td>
                             <td><?php echo $row->pro_stock; ?></td>
                             <td><?php echo $row->pro_couleur; ?></td>
                             <td><?php echo $row->pro_d_ajout; ?></td>
@@ -41,13 +41,5 @@
                 </tbody>        
             </table>           
         </div>
-<?php }else{ ?>
 
-    <div>
-        Veuillez vous connecter en tant qu'administrateur pour accèder à cette page.
-        Vous allez être rediriger pour vous authentifier.    
-    </div>
- <?php   
-    header( "refresh:3; url=" .site_url('Users/connexion'));
- }
- ?>    
+   

@@ -15,7 +15,8 @@
                                 <p>Veuillez entrer une saisie valide.</p>
                             </div>
                             <?php echo form_error('pro_ref'); ?>
-                        </div>                                                           
+                        </div>  
+
                         <div class="form-group col-5 offset-2">                                                    
                             <label for="couleur">Couleur</label>
                             <input type="text" class="form-control" name="pro_couleur" id="couleur" value="" size="30">
@@ -26,21 +27,14 @@
                     </div>
                     <div class="row cat-lib">                                                   <!-- champs catégorie et libélé -->
                         <div class="categorie col-5 ">
-                            <!-- <p class="P">Catégorie</p>
-                            <div class="input-group ">
-                                <select class="custom-select" name="pro_cat_id" id="categorie" >
-                                    <?php //foreach($liste_categorie as $row){ ?>
-                                    <option value='<?php //echo $row->cat_id ?>'><?php //echo $row->cat_nom ?></option>
-                                    <?php //}?>
-                                </select>
-                            </div> -->
                             <!-- menu ajax  -->
                             <div id="tree">
                                 <label for="cat">Catégorie</label>                             
                             </div>
-                            <input type="hidden" name="pro_cat_id" id="categorie" value=""> 
-                            <?php echo form_error('pro_cat_id'); ?> 
+                            <input type="hidden" name="cat_id" id="categorie" value=""> 
+                            <?php echo form_error('cat_id'); ?> 
                         </div>
+
                         <div class="form-group col-5 offset-2">
                             <label for="libelle">Libéllé</label>
                             <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit" size="200" >
@@ -68,7 +62,7 @@
                     <div class="row">                                                           <!-- champs prix et stock -->
                         <div class="form-group col-5">                            
                             <label for="prix">Prix</label>
-                            <input type="text" class="form-control" name="pro_prix" id="prix" value="" size="6" >
+                            <input type="text" class="form-control" name="pro_prix_ht" id="prix" value="" size="6" >
                             <div class="red" id="errPrixVide">
                                 <p>Veuillez remplir le champ.</p>
                             </div>
@@ -92,7 +86,7 @@
                         
                     </div>
                     <div class="row">                                                           <!-- champ photo  -->
-                        <div class="chieur col-5">
+                        <div class="chieur col-4">
                             <p class="P">Photo </p>
                             <div class="input-group mb-2 ">
                                 <div class="custom-file">
@@ -101,7 +95,14 @@
                                 </div>  
                             </div>
                         </div>
-                        <div class="form-group col-5 offset-2">
+                        <div class="form-group col-3 offset-3">
+                            <p>Produit bloqué </p>
+                            <input type="radio" class="" name="pro_bloque" id="bloque_oui" value="1">
+                            <label for="bloque_oui">oui</label>
+                            <input type="radio" class="" name="pro_bloque" id="bloque_non" value="0" checked>
+                            <label for="bloque_non">non</label>
+                        </div>
+                        <div class="form-group col-2 ">
                             <label for="pro_d_ajout">Date d'ajout</label>
                             <input type="text" class="form-control" name="pro_d_ajout" id="date_ajout" value="<?php echo date('Y-m-d'); ?>" readonly>
                         </div> 
@@ -118,12 +119,16 @@
  * public function('paramètre avec lequel il a été envoyé')
  */
 $(document).ready(function(){
+
+    var url = "http://localhost/ci/index.php";
+    
     /**
      * Génère le sélect de base avec les catégories parents
      */
     $.ajax({
         type: "GET",
-        url: '<?php echo site_url("produits/menu") ?>',
+        /* url: '<?php //echo site_url("produits/menu/") ?>', */
+        url: url + '/produits/menu/' + 0,
         dataType: "json",
         success:function(data)
         {

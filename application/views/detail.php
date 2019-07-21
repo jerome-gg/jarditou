@@ -1,23 +1,25 @@
-<?php if((isset($_SESSION)) && ($_SESSION['user_droit'] == 'a')){ ?>
+
             <h1>Formulaire de détails</h1>
             <div class="container">
                 <form action="" method="" id="">
                     <div class="row">
-                        <div class=" col-lg col-md-12">
+                        <div class=" col-lg-6 col-md-12">
                             <div class="photo_box">
-                                <img  class="photo_detail rounded mx-auto d-block" src="<?php echo base_url("assets/images/{$detail->pro_id}.{$detail->pro_photo}")?>" alt="photo du produit">
+                                <img  class="photo_detail img-responsive" src="<?php echo base_url("assets/images/{$detail->pro_id}.{$detail->pro_photo}")?>" alt="photo du produit">
                             </div>
-                        </div>    
-                        <div class=" col-lg col-md-12 col-md-12">
-                            <div class="form-group ">
-                                <label for="id">ID</label>
-                                <input type="text" class="form-control" name="pro_id" id="id" value="<?php echo $detail->pro_id;?>" readonly>
-                            </div>
-                         </div> 
-                         <div class=" col-lg col-md-12"> 
-                            <div class="form-group ">
-                                <label for="reference">Référence</label>
-                                <input type="text" class="form-control" name="pro_ref" id="reference" value="<?php echo $detail->pro_ref; ?>"readonly>
+                        </div>
+                        <div class=" col-lg-6 col-md-12 box_id_ref">    
+                            <div class=" col-lg-12 col-md-12 ">
+                                <div class="form-group ">
+                                    
+                                    <input type="hidden" class="form-control" name="pro_id" id="id" value="<?php echo $detail->pro_id;?>" readonly>
+                                </div>
+                            </div> 
+                            <div class=" col-lg col-md-12"> 
+                                <div class="form-group ">
+                                    <label for="reference">Référence</label>
+                                    <input type="text" class="form-control" name="pro_ref" id="reference" value="<?php echo $detail->pro_ref; ?>"readonly>
+                                </div>
                             </div>
                         </div> 
                     </div>
@@ -25,7 +27,7 @@
                         <div class="  col-lg col-md-12">
                             <div class="form-group">
                                 <label for="categorie">Catégorie</label>
-                                <input type="text" class="form-control" name="cat_id" id="categorie" value="<?php echo $detail->pro_cat_id; ?>"readonly>
+                                <input type="text" class="form-control" name="cat_id" id="categorie" value="<?php echo $detail->cat_id; ?>"readonly>
                             </div>
                         </div>
                         <div class="  col-lg col-md-12">
@@ -45,7 +47,7 @@
                         <div class=" col-lg col-md-12">
                             <div class="form-group ">
                                 <label for="description">Description</label>
-                                <textarea class="form-control textearea" name="pro_description" id="description"     readonly><?php echo $detail->pro_description; ?></textarea>
+                                <textarea class="form-control textearea" name="pro_description" id="description" readonly><?php echo $detail->pro_description; ?></textarea>
                             </div>
                         </div>
                         <div class=" col-lg col-md-12">
@@ -64,7 +66,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="prix">Prix</label>
-                                <input type="text" class="form-control" name="pro_prix" id="prix" value="<?php echo $detail->pro_prix; ?>"readonly>
+                                <input type="text" class="form-control" name="pro_prix" id="prix" value="<?php echo $detail->pro_prix_ht; ?>"readonly>
                             </div>
                             <div class="form-group">
                                 <label for="stock">Stock</label>
@@ -111,16 +113,7 @@
                     </div>
                 </form>
             </div>
-<?php }else{ ?>
-
-    <div>
-        Veuillez vous connecter en tant qu'administrateur pour accèder à cette page.
-        Vous allez être rediriger pour vous authentifier.    
-    </div>
-
-<?php header( "refresh:3; url=" .site_url('Users/connexion'));
-}
-  ?>      
+      
                     
                     
                         

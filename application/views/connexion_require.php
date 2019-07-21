@@ -1,1 +1,1 @@
-<p>Connexion requise pour accèder au site </p>
+<h1>Connexion requise pour accéder à cette partie du site </h1>

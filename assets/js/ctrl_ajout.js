@@ -1,12 +1,3 @@
-// filtre expression régulières
-var filtre = new RegExp("^([A-za-z0-9]+)$");// 1 caractère min alphanumérique
-var filtre2 = new RegExp("^([0-9]+)$");// 1 caractère min numérique
-var filtre3 = new RegExp("^[A-Za-z]+[A-Za-z]+$");// 1 caractère min 
-var filtre4 = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");// mail valide 
-var filtre5 = new RegExp("^[[\'. A-Za-zéèàç]*$");// 0 ou plusieurs caractères description
-var filtre6 = new RegExp("^[A-Za-z]*$");// 0 ou plusieurs caractères couleur
-var filtre7 = new RegExp("^([0-9]+)([.]?[0-9]+)?$"); // champ prix
-
 
 $(document).ready(function()
 {
@@ -23,7 +14,7 @@ $(document).ready(function()
     // contrôle du champ référence
     $("#reference").blur(function(){
         var contenu = $('#reference').val();
-        var resultat = filtre.test(contenu);
+        var resultat = generique.test(contenu);
         if (contenu.length == 0){
             $("#errRefVide").show();
             $("#errRefSaisie").hide();
@@ -41,7 +32,7 @@ $(document).ready(function()
     // contrôle du champ libellé
     $("#libelle").blur(function(){
         var contenu = $('#libelle').val();
-        var resultat = filtre.test(contenu);
+        var resultat = generique.test(contenu);
         if (contenu.length == 0){
             $("#errLibVide").show();
             $("#errLibSaisie").hide();
@@ -59,7 +50,7 @@ $(document).ready(function()
     // contrôle du champ prix
     $("#prix").blur(function(){
         var contenu = $('#prix').val();
-        var resultat = filtre7.test(contenu);
+        var resultat = filtrePrix.test(contenu);
         if (contenu.length == 0){
             $("#errPrixVide").show();
             $("#errPrixSaisie").hide();
@@ -77,7 +68,7 @@ $(document).ready(function()
     // contrôle du champ stock
     $("#stock").blur(function(){
         var contenu = $('#stock').val();
-        var resultat = filtre2.test(contenu);
+        var resultat = int.test(contenu);
         if (contenu.length == 0){
             $("#errRStkVide").show();
             $("#errRStkSaisie").hide();
@@ -95,7 +86,7 @@ $(document).ready(function()
     // contrôle du champ couleur
     $("#couleur").blur(function(){
         var contenu = $('#couleur').val();
-        var resultat = filtre6.test(contenu);
+        var resultat = filtreCouleur.test(contenu);
         if (!resultat){
             $("#errCoulSaisie").show();
             erreur5 = false;
@@ -107,7 +98,7 @@ $(document).ready(function()
     // contrôle du champ description
     $("#description").blur(function(){
         var contenu = $('#description').val();
-        var resultat = filtre5.test(contenu);
+        var resultat = filtreDescription.test(contenu);
         if (!resultat){
             $("#errDescSaisie").show();
             erreur6 = false;
@@ -123,7 +114,7 @@ $(document).ready(function()
 
         // contrôle du champ référence
         var contenu = $('#reference').val();
-        var resultat = filtre.test(contenu);
+        var resultat = generique.test(contenu);
         if (contenu.length == 0){
             $("#errRefVide").show();
             $("#errRefSaisie").hide();
@@ -140,7 +131,7 @@ $(document).ready(function()
 
         // contrôle du champ libellé
         var contenu = $('#libelle').val();
-        var resultat = filtre.test(contenu);
+        var resultat = generique.test(contenu);
         if (contenu.length == 0){
             $("#errLibVide").show();
             $("#errLibSaisie").hide();
@@ -156,7 +147,7 @@ $(document).ready(function()
         }
     // contrôle du champ prix
         var contenu = $('#prix').val();
-        var resultat = filtre7.test(contenu);
+        var resultat = filtrePrix.test(contenu);
         if (contenu.length == 0){
             $("#errPrixVide").show();
             $("#errPrixSaisie").hide();
@@ -172,7 +163,7 @@ $(document).ready(function()
         }
     // contrôle du champ stock
         var contenu = $('#stock').val();
-        var resultat = filtre2.test(contenu);
+        var resultat = int.test(contenu);
         if (contenu.length == 0){
             $("#errRStkVide").show();
             $("#errRStkSaisie").hide();
@@ -188,7 +179,7 @@ $(document).ready(function()
         }
     // contrôle du champ couleur
         var contenu = $('#couleur').val();
-        var resultat = filtre6.test(contenu);
+        var resultat = filtreCouleur.test(contenu);
         if (!resultat){
             $("#errCoulSaisie").show();
             erreur5 = false;
@@ -198,7 +189,7 @@ $(document).ready(function()
         }
     // contrôle du champ description
         var contenu = $('#description').val();
-        var resultat = filtre5.test(contenu);
+        var resultat = filtreDescription.test(contenu);
         if (!resultat){
             $("#errDescSaisie").show();
             erreur6 = false;

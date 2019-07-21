@@ -1,8 +1,24 @@
+.effet{
+    border:  2px #256d48 solid;
+    border-radius: 5px;
+    box-shadow: 1px 5px 5px black;
+    margin-top: 2em
+}
+
+/* body{
+    background-image: url("../images/ciel.jpg");
+    background-repeat: repeat-y;
+} */
 /*-------------------------------------------Header-------------------------------------------*/
 
 header{
     background-color:#ffffff;  
     margin-bottom: 2rem;
+    border: 2px #256d48 solid;
+    border-radius: 5px;
+    box-shadow: 1px 5px 5px black;
+    padding: 10px;
+    margin-top: 2em;
 }
 
 #logo{
@@ -17,8 +33,8 @@ header{
     flex-direction: column;
 }
 .admin{
-    border: 4px #ac3521 solid;
-    border-radius: 30px;
+    border: 2px #ac3521 solid;
+    border-radius: 10px;
 }
 .admin p{
     font-size: 1.5em;
@@ -43,9 +59,13 @@ header a{
 }
 /*-------------------------------------------Footer-------------------------------------------*/
 
-.footer{
-    background-color:black;
-    /* margin-top: 2rem; */
+footer{
+    /* background-color:black; */
+    margin-top: 2rem;
+}
+
+.promo{
+    margin-top: 2%;
 }
 /*-------------------------------------------accueil-------------------------------------------*/
 
@@ -57,9 +77,18 @@ header a{
 }
 
 .accueil{
-    color: black;
+    font-size: 1.3em;
+    color: #256d48;
     font-weight: bolder;
 }
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2%;
+}
+
+
 
 /*-------------------------------------------Formulaire ajout-------------------------------------------*/
 /*---------------------------body---------------------------*/
@@ -94,6 +123,7 @@ h1{
     text-align: center;
     font-weight: bold;
     margin-bottom: 3rem;
+    color: #ac3521;
 }
 
 
@@ -118,10 +148,22 @@ table{
 }
 
 .photo{
-    width:35%;
+   /*  width:35%; */
     /* max-width: 25%; */
-    min-width: 50%;
+    /* min-width: 50%; */
+    max-width: 45%;
+    /* min-width: 50%; */
+    max-height: 50%;
 }
+.photo2{
+   /*  width:35%; */
+    /* max-width: 25%; */
+    /* min-width: 50%; */
+    max-width: 45%;
+    /* min-width: 50%; */
+    /* max-height: 50%; */
+}
+
 .btn_detail{
     padding-left:15px; 
 }
@@ -144,6 +186,9 @@ table{
     margin-left: -2rem;
 }
 
+.box_id_ref{
+    padding-right: 0px;
+}
 
 
 
@@ -175,7 +220,7 @@ table{
 }
 
 .card-title{
-    font-size: 1em;
+    font-size: 2em;
     font-weight: bold;
 }
 
@@ -195,7 +240,7 @@ table{
 
 .card{
     width: 18rem;
-    height: 35rem;
+    height: 40rem;
 }
 
 .cardText{
@@ -207,6 +252,49 @@ table{
     overflow: hidden;
 }
 
+.prix{
+    margin-top: 4%;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.description{
+    max-height: 100px;
+}
+
+/*-------------------------------------------Page panier-------------------------------------------*/
+
+#corbeille{
+    width:20%;
+}
+
+.input_quantite{
+    position: relative;
+    top: 12px;
+}
+.quantite{
+    position: relative;
+    top: 15px;
+}
+
+.total{
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+}
+#total{
+    width: auto;
+}
+
+.titre{
+    color: #256d48;
+}
+
+.card_panier{
+    border: 2px #256d48 solid;
+    border-radius: 5px;
+    box-shadow: 1px;
+    box-shadow: 1px 5px 5px black;
+}
 
 /* header */
 
