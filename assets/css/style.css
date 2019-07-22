@@ -5,6 +5,13 @@
     margin-top: 2em
 }
 
+.title{
+    color: #256d48;
+    font-weight: bold;
+    margin:auto;
+    font-size: 0.6em;
+}
+
 /* body{
     background-image: url("../images/ciel.jpg");
     background-repeat: repeat-y;
