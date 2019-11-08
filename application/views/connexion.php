@@ -11,6 +11,9 @@
             <input type="password" class="form-control" id="pass" placeholder="Password" name="user_pass">
             <?php echo form_error('user_pass', '<div class= "red">', '</div>'); ?>
           </div>
-          <button type="submit" class="btn btn-primary offset-3">Connexion</button>
+          <div class="form-group col-sm-6 offset-3">
+            <button type="submit" class="btn btn-primary ">Connexion</button>
+            <a class="offset-6" href="<?php echo site_url('Users/inscription');?>">Pas encore inscrit ?</a>
+          </div>
         </form>
     </div>

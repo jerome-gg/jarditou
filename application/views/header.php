@@ -18,27 +18,70 @@
     <body>
   
         <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+                <!-- <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="<?php echo site_url('Produits/accueil');?>">Accueil <span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="<?php echo site_url('Produits/boutique');?>">Boutique <span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="<?php echo site_url("Produits/panier"); ?>">Panier <span class="sr-only"></span></a>
+                            </li>
+                            <?php if(!$this->session->user_name == ''){ ?>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="<?php echo site_url('Produits/all_commandes_by_id/');?>">Mes commandes <span class="sr-only"></span></a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion <span class="sr-only"></span></a>
+                                </li>
+                            <?php } else { ?>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="<?php echo site_url('Users/connexion');?>">Se connecter <span class="sr-only"></span></a>
+                                </li>
+                            <?php } ?>
+                            <?php if($this->session->user_droit == 'admin'){?>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Administration
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="<?php echo site_url('Users/controle'); ?>">Panneau de controle</a>
+                                        <a class="dropdown-item" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a>
+                                        <a class="dropdown-item" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </nav>
             <header>
-                <div class="container ">
+                <!-- <div class="container ">
                     <nav class="nav nav-pills flex-column flex-sm-row">
-                        <a class="flex-sm-fill text-sm-center nav-link " href="<?php echo site_url('Produits/accueil');?>">Accueil</a>
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Produits/boutique');?>">Boutique</a>
-                        <?php if(!$this->session->user_name == ''){ ?>
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Produits/all_commandes_by_id/');?>">Mes commandes</a>
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Users/deconnexion');?>">Déconnexion</a>
-                        <?php } else { ?>
-                            <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Users/connexion');?>">Se connecter</a>
-                        <?php } ?>         
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url("Produits/panier"); ?>">Panier</a>
+                        <a class="flex-sm-fill text-sm-center nav-link " href="<?php// echo site_url('Produits/accueil');?>">Accueil</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php //echo site_url('Produits/boutique');?>">Boutique</a>
+                        <?php// if(!$this->session->user_name == ''){ ?>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php //echo site_url('Produits/all_commandes_by_id/');?>">Mes commandes</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php //echo site_url('Users/deconnexion');?>">Déconnexion</a>
+                        <?php// } else { ?>
+                            <a class="flex-sm-fill text-sm-center nav-link" href="<?php// echo site_url('Users/connexion');?>">Se connecter</a>
+                        <?php //} ?>         
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php// echo site_url("Produits/panier"); ?>">Panier</a>
                     </nav>
-                    <?php if($this->session->user_droit == 'admin'){?>
+                    <?php// if($this->session->user_droit == 'admin'){?>
                     <nav class="nav nav-pills flex-column flex-sm-row admin">
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Users/controle'); ?>">Panneau de controle</a>
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Produits/liste'); ?>">Liste des articles</a>
-                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php// echo site_url('Users/controle'); ?>">Panneau de controle</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php// echo site_url('Produits/liste'); ?>">Liste des articles</a>
+                        <a class="flex-sm-fill text-sm-center nav-link" href="<?php// echo site_url('Produits/ajout'); ?>">Ajouter un article</a>
                     </nav>
-                    <?php } ?>
-                </div>
+                    <?php// } ?>
+                </div> -->
             </header>
         </div>
 

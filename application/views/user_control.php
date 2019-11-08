@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-lg-12 effet">
                         
-                        <table class="table table-bordered mt-2">
+                        <!-- <table class="table table-bordered mt-2">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Nom</th>
@@ -50,6 +50,43 @@
                                     </tr>
                                 <?php $i++; } ?>
                             </tbody>
+                        </table> -->
+
+                        <table class="table-striped table-bordered offset-1 col-lg-10 mt-2 mb-2">
+                            <thead >
+                                <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Mail</th>
+                                <th>Dernière connection</th>
+                                <th>Droits</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <?php $i=1 ?>
+                            <?php foreach ($utilisateur as $row) {?>
+                                <tbody>
+                                    <tr>
+                                        <td><?php echo $row->user_nom ?></td>
+                                        <td><?php echo $row->user_prenom ?></td>
+                                        <td><?php echo $row->user_mail ?></td>
+                                        <td><?php echo $row->user_date_der_co ?></td>
+                                        <td><?php echo $row->user_droit?></td>
+                                        <td>
+                                            <div>
+                                                <input data-id="<?php echo $row->user_id?>" class="droits" type="radio" id="utilisateur.<?php echo $i?>" name="droit<?php echo $i ?>" value="admin" <?php if($row->user_droit == "admin"){echo 'checked';} ?>>
+                                                <label for="droit">Administrateur</label>
+                                            </div>
+                                            <div>
+                                                <input  data-id="<?php echo $row->user_id?>" class="droits" type="radio" id="utilisateur.<?php echo $i ?>" name="droit<?php echo $i ?>" value="utilisateur" <?php if($row->user_droit != "admin"){echo 'checked';} ?>>
+                                                <label for="droit">Utilisateur</label>
+                                            </div>
+                                        </td>
+                                        <td><a href="<?php echo site_url('/users/delete_user/'.$row->user_id); ?>" >Supprimer</a></td>
+                                    </tr>   
+                                </tbody>
+                            <?php  } ?> 
                         </table>
                     </div>
                 </div>
@@ -68,7 +105,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12 effet">
-                        <table class="table-striped table-bordered offset-1 col-lg-10 mt-2 mb-2">
+                        <!-- <table class="table-striped table-bordered offset-1 col-lg-10 mt-2 mb-2">
                             <thead class="table table-bordered ">
                                 <tr class="table-active">
                                     <td class="titre"><h4>N° commande</h4></td>
@@ -95,6 +132,34 @@
                                     <td ><?php echo $total_cmd[0]->total_ttc ?></td>
                                 </tr>
                             </tfoot>       
+                        </table> -->
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>N° commande</th>
+                                    <th>Date de la commande</th>
+                                    <th>Status</th>
+                                    <th>Détails</th>
+                                    <th>Total TTC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($commandes as $row){  ?>
+                                    <tr>
+                                        <td><?php echo $row->com_id ?></td>
+                                        <td><?php echo $row->com_date ?></td>
+                                        <td class="<?php if($row->com_status == 'livrée'){ echo 'table-success';}else{ echo 'table-info';} ?>"><?php echo $row->com_status ?></td>
+                                        <td ><a href="<?php echo site_url("produits/find_commande/".$row->com_id) ?>">Voir</a></td>
+                                        <td><?php echo $row->com_total_ttc ?></td>
+                                    </tr>
+                                    <?php  } ?> 
+                                </tbody>
+                            <tfoot>
+                                <tr class="table-active">   
+                                    <td colspan="4"> Total des commandes</td>
+                                    <td ><?php echo $total_cmd[0]->total_ttc ?></td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -113,7 +178,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12 effet">
-                        <table class="table-striped table-bordered offset-1 col-lg-10 mt-2 mb-2">
+                        <!-- <table class="table-striped table-bordered offset-1 col-lg-10 mt-2 mb-2">
                             <thead class="table table-bordered ">
                                 <tr class="table-active">
                                     <td class="titre"><h4>Id</h4></td>
@@ -130,6 +195,25 @@
                                 </tr>
                                 <?php } ?>
                             </tbody>        
+                        </table> -->
+                        
+                        <table class="table-striped table-bordered offset-1 col-lg-10 mt-2 mb-2">
+                            <thead >
+                                <tr>
+                                <th>Id</th>
+                                <th>Libelle</th>
+                                <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($stock as $row){  ?>
+                                <tr>
+                                <td><?php echo $row->pro_id ?></td>
+                                <td><?php echo $row->pro_libelle ?></td>
+                                <td class="<?php if($row->pro_stock == 0){ echo 'table-danger';}else{ echo 'table-info';} ?>"><?php echo $row->pro_stock ?></td>
+                                </tr>
+                                <?php  } ?> 
+                            </tbody>
                         </table>
                     </div>
                 </div>

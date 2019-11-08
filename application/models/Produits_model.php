@@ -114,12 +114,13 @@ class Produits_model extends CI_Model
  * methode pour supprimer un produit
  */
     public function delete($id){ 
-
+        
         $this->db->where('pro_id', $id);
         $this->db->delete('produits');
         // Produces:
         // DELETE FROM produits
         // WHERE pro_id = $id
+
     }
 
 /**

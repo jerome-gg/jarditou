@@ -207,7 +207,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     // récupère les données du formulaire
                     $data = $this->input->post();
-
+                    var_dump($_FILES['fichier']);die('ok');
                     // Envoi les données au travers d'un variable
                     $succes = $this->Produits_model->update_pro($data);
                     
@@ -324,12 +324,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function panier()
         {
-            var_dump($_SESSION);
+            
             if(!$this->session->user_name == '' ){
                 
                 $data2 = $_SESSION['user_panier'];
-            
-                if(count($_SESSION['user_panier'])){
+               
+                if(count($_SESSION['user_panier']) != null){
                     foreach ($_SESSION['user_panier'] as $row) {
                         $requete = current($this->Produits_model->fetch_produit($row['pro_id']));
                         $tab[]=array(
@@ -360,9 +360,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function panier_plus()
         {
-            
-            
-            
             $tab = array();
             $data = $this->input->post();
             $tab_ref = array(); // création d'un array pour transmettre en Ajax
@@ -397,8 +394,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          public function panier_moins()
         {
-            
-
             $tab = array();
             $data = $this->input->post();
             $tab_ref = array();// création d'un array pour tranmettre en Ajax
@@ -448,9 +443,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         
         public function modif_boutique($id){
+
             $requete = $this->Produits_model->boutique_fetch($id);
             $this->output->set_output(json_encode($requete)); 
             return $requete;
+
         }
         
         public function commander(){
@@ -459,7 +456,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->load->view('header');
             $this->load->view('commande_valider');
             $this->load->view('footer');
-            
+
         }
         
         public function all_commandes(){
@@ -469,7 +466,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->load->view('header');
             $this->load->view('mes_commandes', $requete);
             $this->load->view('footer');
-          
+            
         }
 
         public function all_commandes_by_id(){

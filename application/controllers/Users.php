@@ -23,7 +23,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $this->load->view('footer');
 
             }else{
-               
                 // traitement des infos du form en les recupérant via post
                 $data = $this->input->post();
                 
@@ -31,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 foreach($data as $key => $value){
                     $key = htmlspecialchars($value);
                 }
+                
                 
                
                 // traitement des données si les 2 pass sont identiques
@@ -77,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 foreach($data as $key => $value){
                     $key = htmlspecialchars($value);
+                    var_dump($value);
                 }
                 
                 $requete = $this->Users_model->auth_user($data);
@@ -85,13 +86,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     if(($data['user_mail'] == $requete->user_mail) && (password_verify($data['user_pass'],$requete->user_pass))){
                         
                         $this->Users_model->user_last_connexion($data);
-                        var_dump($requete);
-
+                       
                         $this->session->set_userdata('user_name', $requete->user_prenom);
                         $this->session->set_userdata('email', $requete->user_mail);
                         $this->session->set_userdata('user_droit', $requete->user_droit); 
 
                         redirect( site_url( 'Produits/boutique'));
+                    }else{
+                        /**
+                         * connexion échoué pass erroné
+                         */
+                        $this->load->view('header');
+                        $this->load->view('connexion_failed');
+                        $this->load->view('connexion');
+                        $this->load->view('footer');
                     }  
                 }else{
                     /**

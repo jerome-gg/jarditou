@@ -106,7 +106,8 @@
             </div>
             <?php echo form_error('pass2', '<div class= "red">', '</div>'); ?>
           </div>
-
-          <button type="submit" class="btn btn-primary offset-3" id="valider" value="valider">Envoyer</button>
+          <div class="form-group col-sm-6 offset-3">
+            <button type="submit" class="btn btn-primary" id="valider" value="valider">Envoyer</button>
+          </div>
         </form>
     </div>

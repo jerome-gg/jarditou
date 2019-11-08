@@ -18,15 +18,15 @@
 } */
 /*-------------------------------------------Header-------------------------------------------*/
 
-header{
+/* header{
     background-color:#ffffff;  
     margin-bottom: 2rem;
     border: 2px #256d48 solid;
     border-radius: 5px;
-    box-shadow: 1px 5px 5px black;
+    box-shadow: 1px 5px 5px rgb(0, 0, 0);
     padding: 10px;
     margin-top: 2em;
-}
+} */
 
 #logo{
     object-fit: contain;
@@ -71,8 +71,8 @@ footer{
     margin-top: 2rem;
 }
 
-.promo{
-    margin-top: 2%;
+#promo{
+    width:520px;
 }
 /*-------------------------------------------accueil-------------------------------------------*/
 
@@ -155,12 +155,7 @@ table{
 }
 
 .photo{
-   /*  width:35%; */
-    /* max-width: 25%; */
-    /* min-width: 50%; */
-    max-width: 45%;
-    /* min-width: 50%; */
-    max-height: 50%;
+    height: 125px;
 }
 .photo2{
    /*  width:35%; */
@@ -268,16 +263,32 @@ table{
     max-height: 100px;
 }
 
+.card-text{
+    font-size: 0.8em;
+    overflow: auto;
+    height: 180px;
+    
+}
+.form_boutique{
+    margin-top: 2em;
+}
+
+.card_boutique{
+    min-height: 22em;
+}
+.boutique_quantite{
+    font-size: 0.8em;
+}
 /*-------------------------------------------Page panier-------------------------------------------*/
 
 #corbeille{
     width:20%;
 }
 
-.input_quantite{
+/* .input_quantite{
     position: relative;
     top: 12px;
-}
+} */
 .quantite{
     position: relative;
     top: 15px;
@@ -303,43 +314,17 @@ table{
     box-shadow: 1px 5px 5px black;
 }
 
-/* header */
-
-/* .nav{
-    background-color:grey;
-    border-radius: 5px;
-    display: flex;
-    justify-content: flex-start;
-    font-weight: bold;
+.container{
+    min-height: 400px;
 }
 
-.nav a{
-    color:black;
+.valide_panier{
+    margin-top: 1em;
 }
 
-h1{
-    text-align: center;
-    font-weight: bold;
-} */
+/*-------------------------------------------Page liste produits-------------------------------------------*/
 
-/* footer form*/
-
-/* .date{
-    margin-bottom: 0rem !important;
-    
+.photo_liste_produit{
+    min-width: 125px;
+    max-width: 150px;
 }
-
-button{
-    margin-top: 1rem;
-}
-
-.bloque{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.form-check{
-    margin-bottom: 1rem;
-    margin-left: 1rem;
-} */

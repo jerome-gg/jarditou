@@ -1,6 +1,6 @@
         <footer>
-            <div>
-                <img class="rounded mx-auto d-block" src="<?php  echo base_url("assets/images/promotion.jpg") ?>" alt="plante qui grandit">
+            <div class="container">
+                <img class="rounded mx-auto d-block " id="promo" src="<?php  echo base_url("assets/images/promotion.jpg") ?>" alt="plante qui grandit">
             </div>
             
             

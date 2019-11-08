@@ -26,7 +26,7 @@
                             $ok = 'non';
                         }?>
                         <tr>
-                            <td><img class=' photo rounded mx-auto d-block img-responsive' src="<?php echo base_url("assets/images/{$row->pro_id}.{$row->pro_photo}")?>"></td>
+                            <td><img class=' photo_liste_produit rounded mx-auto d-block img-responsive' src="<?php echo base_url("assets/images/{$row->pro_id}.{$row->pro_photo}")?>"></td>
                             <td><?php echo $row->pro_id; ?></td>
                             <td><a href="<?php echo site_url('Produits/detail?id='). $row->pro_id ?>"><?php echo $row->pro_ref; ?></a> </td>
                             <td><?php echo $row->pro_libelle; ?></td>

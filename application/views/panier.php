@@ -1,13 +1,53 @@
 <div class="container">
-    <a href="<?php echo site_url('Produits/boutique') ?>">Cliquez ici pour continuer vos achats</a>
-    <div class="row ">
+    
+    <!-- <div class="row ">
         <div class="col-lg-12">
             <h1>Détail du panier</h1> 
         </div>
-    </div>
+    </div> -->
     <div class="row">
-        <div class="col-lg-8">
-            <table class="table-striped ">
+    <div class="col-lg-8">
+        <h2>Détail du panier</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                    <th>Photos</th>
+                    <th>Libelle</th>
+                    <th>Quantité</th>
+                    <th>Prix HT</th>
+                    <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <?php 
+                    $i=0; 
+                    $total = 0;
+                    foreach ($panier as $key=>$value){  ?>
+                    <tbody>
+                        <tr>
+                        <td><img  class='photo rounded mx-auto d-block' src="<?php echo base_url("assets/images/{$value['pro_photo']}") ?>"></td>
+                        <td><?php echo $value['pro_name']; ?></td>
+                        <td>
+                            <input type="text"  class="form-control input_quantite" name="nombre" id="<?php echo $value['pro_id'] ?>" value="<?php echo $_SESSION['user_panier'][$key]['nombre']; ?>" size="1" readonly>
+                            <div class="quantite">
+                                <div class="row">
+                                    <div class="col-lg-3 offset-2">
+                                        <i id="moins" name="moins<?php echo $value['pro_id'] ?>" class=" moins fas fa-minus-square fa-lg" ></i>
+                                    </div>
+                                    <div class="col-lg-3 ">
+                                        <i id="plus" name="plus<?php echo $value['pro_id'] ?>" class="plus fas fa-plus-square fa-lg" ></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><input type="text" class="form-control somme" name="prix" id="somme<?php echo $value['pro_id'] ?>" value=" <?php echo round($value['pro_prix'] * $value['nombre'],2) ?>"  size="4" readonly></td>
+                        <td><a href="<?php echo site_url("Produits/panier_delete/".$value['pro_id'])  ?>"><i class="far fa-trash-alt fa-2x"></i></a></td>
+                        </tr>
+                    </tbody>
+                <?php  $i++; } ?> 
+            </table>
+        </div>
+            <!-- <table class="table-striped ">
                 <thead class="table table-bordered ">
                     <tr>
                         <td class="titre"><h4>Photos</h4></td>
@@ -40,12 +80,12 @@
                             </td>
                             <td><input type="text" class="form-control somme" name="prix" id="somme<?php echo $value['pro_id'] ?>" value=" <?php echo round($value['pro_prix'] * $value['nombre'],2) ?>"  size="4" readonly></td>
                             
-                            <!-- <td> <a href="<?php //echo site_url("Produits/panier_delete/".$value['pro_id'])  ?>"><img id="corbeille" src="<?php //echo base_url("assets/images/corbeille.png") ?>" alt="Corbeille"></a> </td> -->
+                             <td> <a href="<?php //echo site_url("Produits/panier_delete/".$value['pro_id'])  ?>"><img id="corbeille" src="<?php //echo base_url("assets/images/corbeille.png") ?>" alt="Corbeille"></a> </td> 
                             <td> <a href="<?php echo site_url("Produits/panier_delete/".$value['pro_id'])  ?>"><i class="far fa-trash-alt fa-2x"></i></a></td>
                         </tr>
                     <?php  $i++; } ?> 
                 </tbody>        
-            </table>
+            </table> -->
         </div>
         <div class="col-lg-4">
             <div class="total">
@@ -58,7 +98,11 @@
                             <input type="text" class="form-control" name="total<?php echo $value['pro_id'] ?>" id="total" value="<?php echo $total  ?>" size="4" readonly>
                         </div>
                         <div>
-                            <a href="<?php echo site_url("Produits/commander/") ?>" class="btn btn-primary">Valider ma commande</a>
+                            <a href="<?php echo site_url("Produits/commander/") ?>" class="btn btn-primary valide_panier">Valider ma commande</a>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="<?php echo site_url('Produits/boutique') ?>">Continuer vos achats</a>
                         </div>
                     </div>
                 </div>

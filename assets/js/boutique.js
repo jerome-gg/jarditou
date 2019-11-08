@@ -3,12 +3,15 @@ $(document).ready(function()
     var url = "http://localhost/ci/index.php";
 
     $("#all").click(function(){
-        $('.card').show();
+        $(".fiche").show();
     })
 
     $(".btn-outline-dark").click(function(){
         var categorie = $(this).val();
-        go(categorie);   
+        if(categorie!=""){
+            go(categorie);
+
+        }
     })
 
     function go(categorie){
@@ -20,7 +23,7 @@ $(document).ready(function()
             dataType: "json",
             success:function(data)
             {   
-                $(".card").hide();
+                $(".fiche").hide();
                 $.each(data, function(index,value){
                      $('.cat'+value).show(); 
                 })

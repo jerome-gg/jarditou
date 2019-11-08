@@ -30,7 +30,8 @@
                             </div>
                         </div>   
                     </div>
-                    <div class="row cat-lib">                                                   <!-- champs catégorie et libélé -->
+                                                                                                <!-- champs catégorie et libélé -->
+                    <!-- <div class="row cat-lib">                                                   
                         <div class="categorie col-5 ">
                             <p class="P">Catégorie</p>
                             <div class="input-group ">
@@ -52,6 +53,31 @@
                             </div>
                             <?php echo form_error('pro_libelle', '<div class= "red" >', '</div>'); ?>
                         </div>
+                    </div> -->
+                    
+                    <div class="row cat-lib">                                                   <!-- champs catégorie et libélé -->
+                        <div class="categorie col-5 ">
+                            <!-- menu ajax  -->
+                            <div id="tree">
+                                <label for="cat">Catégorie</label>                             
+                            </div>
+                            <input type="hidden" name="cat_id" id="categorie" value=""> 
+                            <?php echo form_error('cat_id'); ?> 
+                        </div>
+
+                        <div class="form-group col-5 offset-2">
+                            <label for="libelle">Libéllé</label>
+                            <input type="text" class="form-control" name="pro_libelle" id="libelle" value="" placeholder="Nom du produit" size="200" >
+                            
+                            <div class="red" id="errLibVide">
+                                <p>Veuillez remplir le champ.</p>
+                            </div>
+                            <div class="red" id="errLibSaisie">
+                                <p>Veuillez entrer une saisie valide.</p>
+                            </div>
+                            <?php echo form_error('pro_libelle'); ?>
+                        </div>
+                        
                     </div>
 
                     <div class="form-group">                                                    <!-- champ description -->
@@ -138,3 +164,129 @@
                     <input type="submit" class="btn btn-success" value="Valider les modifications" id="valider">
                 </form>
             </div>
+
+            <script>
+/**
+ * methode d'envoi de données avec get ou post 
+ * nécessite de récupérer les données dans le paramètre de la fonction 
+ * public function('paramètre avec lequel il a été envoyé')
+ */
+$(document).ready(function(){
+
+    var url = "http://localhost/ci/index.php";
+    
+    /**
+     * Génère le sélect de base avec les catégories parents
+     */
+    $.ajax({
+        type: "GET",
+        /* url: '<?php //echo site_url("produits/menu/") ?>', */
+        url: url + '/produits/menu/' + 0,
+        dataType: "json",
+        success:function(data)
+        {
+            var i = 0;
+            $('#cat2').remove();
+            $('#cat3').remove();
+            $('#cat4').remove();
+            $('#tree').append('<select  class="custom-select" id="cat"></select>');
+            $('#cat').append('<option value="">Sélectionnez votre catégorie</option>');
+            $.each(data, function(){
+                $('#cat').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
+                i++;
+            });
+            /**
+             * prend en compte la valeur du 1er select pour générer le 2e
+             */
+            $('#cat').change(function(){
+                var categorie = $('#cat').val();
+                $('#categorie').val(categorie);
+                var a = $('#categorie').val();
+                $.ajax({
+
+                    type: "GET",
+                    url: url + '/produits/menu/'+ categorie,
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        var i = 0;
+                        $('#cat2').remove();
+                        $('#cat3').remove();
+                        $('#cat4').remove();
+                        $('#tree').append(" <select id='cat2'  class='custom-select cat2' ></select>");
+                        $('#cat2').append('<option value="0"> Faites votre choix</option>');
+                        $.each(data, function(){
+                            $('#cat2').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
+                            i++;
+                        });
+                        /**
+                         * prend en compte la valeur du 2e select pour générer le 3e
+                         */
+                        $('#cat2').change(function(){
+                            var categorie = $('#cat2').val();
+                            $('#categorie').val(categorie);
+                            var a = $('#categorie').val();
+                            $.ajax({
+                                type: 'GET',
+                                url: url + '/produits/menu/'+ categorie,
+                                dataType: "json",
+                                success:function(data)
+                                {
+                                    if (data.length>0) { 
+                                        var i = 0;
+                                        $('#cat3').remove();
+                                        $('#cat4').remove();
+                                        $('#tree').append(" <select id='cat3'  class='custom-select cat3' ></select>");
+                                        $('#cat3').append('<option value="0"> Faites votre choix</option>');
+                                        $.each(data, function(){
+                                            $('#cat3').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
+                                            i++;
+                                        })
+
+                                        /**
+                                        * prend en compte la valeur du 3e select pour générer le 4e
+                                        */
+                                        $('#cat3').change(function(){
+                                            var categorie = $('#cat3').val();
+                                            $('#categorie').val(categorie);
+                                            var a = $('#categorie').val();
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: url + '/produits/menu/'+ categorie,
+                                                dataType: "json",
+                                                success:function(data)
+                                                {
+                                                    if (data.length>0) { 
+                                                        var i = 0;
+                                                        $('#cat4').remove();
+                                                        $('#tree').append(" <select id='cat4'  class='custom-select cat4' ></select>");
+                                                        $('#cat4').append('<option value="0"> Faites votre choix</option>');
+                                                        $.each(data, function(){
+                                                            $('#cat4').append('<option value=' + data[i].cat_id + '>' + data[i].cat_nom +'</option>');
+                                                            i++;
+                                                        })
+                                                        
+                                                    }// end if  (data.lenght>0) 4e input
+                                                    // bloc pour la selection de la 4e catégorie.
+                                                    $('#cat4').change(function(){
+                                                        var categorie = $('#cat4').val();
+                                                        
+                                                        $('#categorie').val(categorie);
+                                                        var a = $('#categorie').val();
+                                                    }) 
+                                                }
+                                            })
+                                        }) // 4e bloc en fonction du 3e
+                                    } // end if  (data.lenght>0) 3e input
+                                }
+                            })
+                        });// 3e bloc en fonction du 2e
+                    }
+                });
+            });// 2e bloc en fonction du 1er 
+        }
+    });
+});
+
+
+</script>
